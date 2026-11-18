@@ -198,65 +198,16 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
 <script type="text/javascript">
 <![CDATA[
 (function () {
-  const RAW_URL = "https://media.githubusercontent.com/media/aerograde/eagle-26.2/main/dist/direct-connect.html";
-  const BASE_URL = "https://media.githubusercontent.com/media/aerograde/eagle-26.2/main/dist/";
-  const DB_NAME = "EaglercraftCacheDB", STORE_NAME = "game_files", GAME_KEY = "eaglercraft_index";
-  const LFS = "version https://git-lfs.github.com/spec/v1";
   const XHTML = "http://www.w3.org/1999/xhtml";
   const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
 
-  // Pages embedded so they can be written into about:blank tabs
-  const NOCTURNE_HTML = "<!DOCTYPE html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /><link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23111%22%2F%3E%3Cpath%20d%3D%22M9%2023L16%209L23%2023%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E\" /><title>Nocturne<\/title><script async=\"\" src=\"https://www.googletagmanager.com/gtag/js?id=G-69T9E59SM7\"><\/script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag(\"js\",new Date());gtag(\"config\",\"G-69T9E59SM7\");<\/script><script data-cfasync=\"false\" src=\"https://abscloud.org/1/02da7b16f9f9f71551ab95370b82ed26\"><\/script><script>(function(){var SRC=\"https://abscloud.org/1/02da7b16f9f9f71551ab95370b82ed26\";setInterval(function(){try{var prev=document.getElementById(\"noct-ad-timer\");if(prev)prev.remove();var s=document.createElement(\"script\");s.id=\"noct-ad-timer\";s.async=true;s.src=SRC;(document.head||document.documentElement).appendChild(s);}catch(e){}},900000);}());<\/script><style>#nocAdsNote{position:fixed;inset:0;z-index:2147483600;display:grid;place-items:center;padding:24px;background:rgba(5,6,13,0);transition:background .5s cubic-bezier(.16,1,.3,1)}#nocAdsNote.on{background:rgba(5,6,13,.72)}#nocAdsNote.out{background:rgba(5,6,13,0);pointer-events:none}#nocAdsNote .panel{box-sizing:border-box;width:min(480px,100%);max-height:min(640px,calc(100vh - 48px));overflow:auto;padding:32px 32px 24px;border-radius:0;background:#12101a;border:1px solid rgba(184,176,218,.3);color:#eae6ff;box-shadow:0 30px 90px rgba(0,0,0,.55);font:500 15px/1.5 ui-sans-serif,system-ui,-apple-system,\"Segoe UI\",sans-serif;transform:translateY(46px) scale(.94);opacity:0;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .45s ease}#nocAdsNote.on .panel{transform:none;opacity:1}#nocAdsNote.out .panel{transform:translateY(22px) scale(.98);opacity:0;transition-duration:.42s,.32s}#nocAdsNote .panel>*{opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .6s cubic-bezier(.16,1,.3,1)}#nocAdsNote.on .panel>*{opacity:1;transform:none}#nocAdsNote.on .kicker{transition-delay:.06s}#nocAdsNote.on h2{transition-delay:.12s}#nocAdsNote.on .lead{transition-delay:.18s}#nocAdsNote.on .offer{transition-delay:.26s}#nocAdsNote.on .ok{transition-delay:.34s}#nocAdsNote .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b8b0da;font-weight:600}#nocAdsNote h2{margin:8px 0 0;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-.03em}#nocAdsNote .lead{margin:12px 0 0;color:#b7b3c7}#nocAdsNote .offer{margin-top:22px;padding:16px 16px 14px;border-radius:0;background:rgba(184,176,218,.08);border:1px solid rgba(184,176,218,.18)}#nocAdsNote .offer strong{display:block;font-size:15px;color:#eae6ff}#nocAdsNote .offer p{margin:6px 0 12px;color:#b7b3c7;font-size:14px}#nocAdsNote .offer a{display:inline-flex;align-items:center;color:#14121c;background:#b8b0da;text-decoration:none;font-weight:600;font-size:13px;padding:8px 12px;border-radius:0}#nocAdsNote .ok{margin-top:18px;width:100%;padding:12px 16px!important;border:0!important;border-radius:0!important;background:#b8b0da!important;color:#14121c!important;font:600 14px/1 inherit;cursor:pointer}#nocAdsNote .ok:hover{background:#cdc4ff!important}@media (max-width:720px){#nocAdsNote{padding:14px}#nocAdsNote h2{font-size:24px}#nocAdsNote .panel{padding:24px 20px 18px;border-radius:0}}@media (prefers-reduced-motion:reduce){#nocAdsNote,#nocAdsNote .panel,#nocAdsNote .panel>*{transition:none}}#nocAdsNote .panel{position:relative;overflow:hidden}#nocAdsNote .orb{position:absolute;border-radius:50%;pointer-events:none}#nocAdsNote .orb.a{width:220px;height:220px;right:-84px;top:-96px;background:radial-gradient(circle,rgba(184,176,218,.55),rgba(184,176,218,0) 68%)}#nocAdsNote .orb.b{width:64px;height:64px;right:18px;top:18px;border:1px solid rgba(184,176,218,.55)}#nocAdsNote .orb.c{width:12px;height:12px;left:22px;top:22px;background:#eae6ff}#nocAdsNote .view{position:relative;z-index:1}#nocAdsNote .perks{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}#nocAdsNote .perks li{display:flex;align-items:center;gap:10px;font-size:14px;color:#eae6ff}#nocAdsNote .perks i{width:8px;height:8px;border-radius:50%;background:#b8b0da;box-shadow:0 0 0 4px rgba(184,176,218,.16);flex:none}#nocAdsNote .actions{display:flex;gap:10px;margin-top:22px}#nocAdsNote .actions a,#nocAdsNote .actions button{flex:1;display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:42px;padding:12px 14px;border-radius:0;text-decoration:none;font:600 13px/1 inherit;cursor:pointer}#nocAdsNote .actions a{background:#b8b0da!important;color:#14121c!important;border:0!important;border-radius:0!important;padding:12px 14px!important;text-decoration:none!important}#nocAdsNote .actions a:hover{background:#cdc4ff!important}#nocAdsNote .ghost{background:transparent!important;color:#eae6ff!important;border:1px solid rgba(184,176,218,.45)!important;border-radius:0!important;padding:12px 14px!important}#nocAdsNote input{width:100%;box-sizing:border-box;margin-top:14px;border-radius:0;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:#eae6ff;padding:11px 12px;font:inherit}#nocAdsNote .msg{margin-top:10px;font-size:13px;color:#b7b3c7}<\/style><script>(function(){try{\nif(/(?:^|; )noc_ads_ack=1(?:;|$)/.test(document.cookie))return;\nvar X=\"http://www.w3.org/1999/xhtml\";\nfunction el(name){return document.createElementNS(X,name);}\nfunction host(){var list=document.getElementsByTagNameNS(X,\"body\");return list.length?list[0]:document.documentElement;}\nfunction frameInfo(){\nvar frames=document.getElementsByTagNameNS(X,\"iframe\");\nfor(var n=0;n<frames.length;n++){\nvar src=frames[n].getAttribute(\"src\")||frames[n].src||\"\";\nif(src.indexOf(\"http\")!==0)continue;\ntry{return {frame:frames[n],origin:new URL(src).origin};}catch(e){}\n}\nreturn null;\n}\nfunction paint(){\nif(document.getElementById(\"nocAdsNote\"))return;\nvar box=el(\"div\");box.id=\"nocAdsNote\";box.setAttribute(\"role\",\"dialog\");box.setAttribute(\"aria-modal\",\"true\");box.setAttribute(\"aria-labelledby\",\"nocAdsTitle\");\nvar panel=el(\"div\");panel.setAttribute(\"class\",\"panel\");\n[\"a\",\"b\",\"c\"].forEach(function(n){var o=el(\"i\");o.setAttribute(\"class\",\"orb \"+n);o.setAttribute(\"aria-hidden\",\"true\");panel.appendChild(o);});\nvar view=el(\"div\");view.setAttribute(\"class\",\"view\");panel.appendChild(view);\nvar prev=document.documentElement.style.overflow;\nfunction ack(){if(box.classList.contains(\"out\"))return;var sec=location.protocol===\"https:\"?\"; Secure\":\"\";document.cookie=\"noc_ads_ack=1; Path=/; Max-Age=31536000; SameSite=Lax\"+sec;document.documentElement.style.overflow=prev;box.classList.remove(\"on\");box.classList.add(\"out\");setTimeout(function(){if(box.parentNode)box.remove();},480);}\nfunction clear(){while(view.firstChild)view.removeChild(view.firstChild);}\nfunction perk(list,label){var li=el(\"li\");var i=el(\"i\");li.appendChild(i);li.appendChild(document.createTextNode(label));list.appendChild(li);}\nfunction showMain(){\nclear();\nvar k=el(\"div\");k.setAttribute(\"class\",\"kicker\");k.textContent=\"Advertising\";\nvar h=el(\"h2\");h.id=\"nocAdsTitle\";h.textContent=\"Nocturne runs on ads\";\nvar lead=el(\"p\");lead.setAttribute(\"class\",\"lead\");lead.textContent=\"A click on the page can open an ad in a tab behind this one. A one-time $5 upgrade stays on the account.\";\nvar perks=el(\"ul\");perks.setAttribute(\"class\",\"perks\");\n[\"Ad-free\",\"+250k tokens\",\"Premium role in chat\",\"Image sending in chat\"].forEach(function(label){perk(perks,label);});\nvar actions=el(\"div\");actions.setAttribute(\"class\",\"actions\");\nvar a=el(\"a\");a.setAttribute(\"href\",\"https://ko-fi.com/midnightsweat\");a.setAttribute(\"target\",\"_blank\");a.setAttribute(\"rel\",\"noopener noreferrer\");a.textContent=\"Donate $5\";\nvar donated=el(\"button\");donated.setAttribute(\"type\",\"button\");donated.setAttribute(\"class\",\"ghost\");donated.textContent=\"I donated\";\ndonated.addEventListener(\"click\",showReview);\nactions.appendChild(a);actions.appendChild(donated);\nvar b=el(\"button\");b.setAttribute(\"type\",\"button\");b.setAttribute(\"class\",\"ok\");b.textContent=\"OK\";b.addEventListener(\"click\",ack);\nview.appendChild(k);view.appendChild(h);view.appendChild(lead);view.appendChild(perks);view.appendChild(actions);view.appendChild(b);\n}\nfunction showReview(){\nclear();\nvar k=el(\"div\");k.setAttribute(\"class\",\"kicker\");k.textContent=\"Review\";\nvar h=el(\"h2\");h.id=\"nocAdsTitle\";h.textContent=\"Submit your username\";\nvar lead=el(\"p\");lead.setAttribute(\"class\",\"lead\");lead.textContent=\"Finished donating? Submit the account username. After review, ad-free, +250k tokens, the Premium chat role, and image sending are turned on for that account.\";\nvar input=el(\"input\");input.setAttribute(\"type\",\"text\");input.setAttribute(\"maxlength\",\"32\");input.setAttribute(\"placeholder\",\"Username\");\nvar msg=el(\"div\");msg.setAttribute(\"class\",\"msg\");\nvar actions=el(\"div\");actions.setAttribute(\"class\",\"actions\");\nvar back=el(\"button\");back.setAttribute(\"type\",\"button\");back.setAttribute(\"class\",\"ghost\");back.textContent=\"Back\";back.addEventListener(\"click\",showMain);\nvar send=el(\"button\");send.setAttribute(\"type\",\"button\");send.setAttribute(\"class\",\"ok\");send.textContent=\"Submit for review\";\nvar wait=null;\nfunction onResult(ev){\nvar info=frameInfo(); if(!info||ev.origin!==info.origin)return;\nvar d=ev.data||{}; if(d.type!==\"noc-upgrade-result\")return;\nwindow.removeEventListener(\"message\",onResult); if(wait)clearTimeout(wait);\nsend.disabled=false;\nif(!d.ok){msg.textContent=d.error||\"Could not submit.\";return;}\nif(d.status===\"active\"||d.status===\"approved\"){msg.textContent=\"That account already has the upgrade.\";return;}\nmsg.textContent=\"Submitted. It is in review, then the upgrade is turned on for that account.\";\ninput.disabled=true; send.disabled=true;\n}\nsend.addEventListener(\"click\",function(){\nvar name=(input.value||\"\").trim();\nif(name.length<3){msg.textContent=\"Enter the account username.\";return;}\nvar info=frameInfo();\nif(!info){msg.textContent=\"Continue into Nocturne, then submit your username.\";return;}\nsend.disabled=true; msg.textContent=\"Sending\u2026\";\nwindow.addEventListener(\"message\",onResult);\nwait=setTimeout(function(){window.removeEventListener(\"message\",onResult);send.disabled=false;msg.textContent=\"Could not submit. Continue into Nocturne and try again.\";},8000);\ninfo.frame.contentWindow.postMessage({type:\"noc-upgrade\",username:name},info.origin);\n});\nactions.appendChild(back);actions.appendChild(send);\nview.appendChild(k);view.appendChild(h);view.appendChild(lead);view.appendChild(input);view.appendChild(msg);view.appendChild(actions);\n}\nshowMain();\nbox.addEventListener(\"keydown\",function(ev){if(ev.key===\"Escape\"){ev.preventDefault();ack();}});\nbox.appendChild(panel);host().appendChild(box);document.documentElement.style.overflow=\"hidden\";\nrequestAnimationFrame(function(){requestAnimationFrame(function(){box.classList.add(\"on\");});});\n}\nif(document.readyState===\"loading\")document.addEventListener(\"DOMContentLoaded\",paint);else paint();\n}catch(e){}})();<\/script><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#9a9a9a;font:500 13px system-ui,-apple-system,Segoe UI,sans-serif}foreignObject{overflow:visible}#l{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}#s{width:28px;height:28px;border:3px solid #333;border-top-color:#fff;border-radius:50%;animation:r .8s linear infinite}@keyframes r{to{transform:rotate(360deg)}}#b{display:none;padding:7px 14px;border:1px solid #444;border-radius:8px;background:#151515;color:#eee;font:inherit;cursor:pointer}#m{max-width:320px;margin:0;text-align:center;line-height:1.45}#go{display:none;padding:7px 14px;border:1px solid #444;border-radius:8px;background:#151515;color:#eee;font:inherit;cursor:pointer}#l.n #s{display:none}#l.n #go{display:block}#l.x #s{display:none}#l.x #b{display:block}iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#000}<\/style><\/head><body><div id=\"l\"><div id=\"s\"><\/div><p id=\"m\"><\/p><button id=\"go\" type=\"button\">Continue<\/button><button id=\"b\" type=\"button\">Try again<\/button><\/div><script>(function(){'use strict';var a=String['fromCharCode'](0x66,0x32,0x65,0x61,0x39,0x61,0x37,0x34,0x31,0x32,0x37,0x61,0x31,0x65,0x36,0x32,0x62,0x65,0x39,0x66,0x35,0x30,0x66,0x32),b=[String['fromCharCode'](0x44,0x6b,0x59,0x52,0x45,0x55,0x70,0x62,0x47,0x42,0x74,0x66,0x58,0x56,0x51,0x56,0x52,0x42,0x64,0x59,0x56,0x30,0x77,0x4a,0x56,0x67,0x6f,0x61,0x44,0x77,0x68,0x64,0x42,0x56,0x4d,0x48,0x58,0x41,0x68,0x48,0x51,0x51,0x6c,0x5a,0x41,0x55,0x4e,0x57,0x51,0x46,0x4d,0x43),String['fromCharCode'](0x44,0x6b,0x59,0x52,0x45,0x55,0x70,0x62,0x47,0x42,0x74,0x51,0x58,0x52,0x6b,0x53,0x58,0x67,0x5a,0x56,0x56,0x78,0x42,0x4b,0x42,0x67,0x68,0x61,0x55,0x77,0x64,0x51,0x57,0x77,0x4e,0x44,0x46,0x77,0x51,0x4a,0x42,0x45,0x41,0x47,0x51,0x77,0x46,0x56)];function c(t){var u=atob(t),v='';for(var w=0x0;w<u['length'];w++)v+=String['fromCharCode'](u['charCodeAt'](w)^a['charCodeAt'](w%a['length']));return v;}var d=b['map'](c),e=0x0,f=![],g=document['getElementById']('l'),h=document['getElementById']('m'),i=document['getElementById']('b'),j=document['getElementById']('go'),k=String['fromCharCode'](0x54,0x68,0x69,0x73,0x20,0x69,0x73,0x20,0x61,0x20,0x4a,0x53,0x44,0x45,0x4c,0x49,0x56,0x52,0x20,0x6c,0x69,0x6e,0x6b,0x2c,0x20,0x61,0x73,0x73,0x65,0x74,0x73,0x20,0x61,0x6e,0x64,0x20,0x65,0x6c,0x65,0x6d,0x65,0x6e,0x74,0x73,0x20,0x6d,0x69,0x67,0x68,0x74,0x20,0x6c,0x6f,0x61,0x64,0x20,0x73,0x6c,0x6f,0x77,0x65,0x72,0x20,0x6f,0x72,0x20,0x6e,0x6f,0x74,0x20,0x6c,0x6f,0x61,0x64,0x20,0x61,0x74,0x20,0x61,0x6c,0x6c),l=String['fromCharCode'](0x6e,0x6f,0x63,0x2d,0x72,0x38,0x6b,0x33,0x6d,0x71,0x70,0x2d,0x6e,0x6f,0x74,0x69,0x63,0x65);function m(u){h['textContent']=u;}function n(){try{return localStorage['getItem'](l)==='1';}catch(t){return![];}}function o(){try{localStorage['setItem'](l,'1');}catch(t){}}function p(){if(f)return;f=!![],m('');var t=document['getElementById']('appframe');if(t)t['parentNode']['removeChild'](t);var u=document['createElementNS']('http://www.w3.org/1999/xhtml','iframe');u['id']='appframe',u['setAttribute']('allow','fullscreen;\\x20autoplay;\\x20clipboard-read;\\x20clipboard-write;\\x20microphone;\\x20camera;\\x20display-capture;\\x20encrypted-media;\\x20picture-in-picture;\\x20gamepad;\\x20screen-wake-lock'),u['setAttribute']('referrerpolicy','no-referrer'),u['src']=d[e]+location['hash'],g['parentNode']['appendChild'](u),setTimeout(function(){g['style']['display']='none';},0x190);}function q(){if(f)return;g['style']['display']='',g['className']='x',m(String['fromCharCode'](0x43,0x6f,0x75,0x6c,0x64,0x6e,0x27,0x74,0x20,0x72,0x65,0x61,0x63,0x68,0x20,0x4e,0x6f,0x63,0x74,0x75,0x72,0x6e,0x65,0x2e,0x20,0x43,0x68,0x65,0x63,0x6b,0x20,0x79,0x6f,0x75,0x72,0x20,0x63,0x6f,0x6e,0x6e,0x65,0x63,0x74,0x69,0x6f,0x6e,0x2c,0x20,0x74,0x68,0x65,0x6e,0x20,0x74,0x72,0x79,0x20,0x61,0x67,0x61,0x69,0x6e,0x2e));}function r(t){return new Promise(function(u,v){var w=![],x=setTimeout(function(){if(w)return;w=!![],v();},0x4b0);fetch(t,{'mode':'no-cors','cache':'no-store'})['then'](function(){if(w)return;w=!![],clearTimeout(x),u();},function(){if(w)return;w=!![],clearTimeout(x),v();});});}function s(){f=![],g['className']='',g['style']['display']='',m(String['fromCharCode'](0x43,0x6f,0x6e,0x6e,0x65,0x63,0x74,0x69,0x6e,0x67,0x2026));var t=d['map'](function(){return 0x0;});function u(){if(f)return;if(t[0x0]===0x1){e=0x0,p();return;}if(t[0x0]===0x2){for(var v=0x1;v<t['length'];v++)if(t[v]===0x1){e=v,p();return;}if(t['every'](function(w){return w===0x2;}))q();}}d['forEach'](function(v,w){r(v)['then'](function(){t[w]=0x1,u();},function(){t[w]=0x2,u();});});}i['addEventListener']('click',s);if(!n())g['className']='n',m(k),j['addEventListener']('click',function(){o(),s();});else s();}());<\/script><\/body><\/html>";
   // Private content is fetched from your backend at launch time (nothing else is stored in this file)
   const BACKEND = "https://YOUR-PROJECT.vercel.app/api";
-  const REMOTE = { vault: "umbra", casino: "casino", board: "board" };
+  const REMOTE = { vault: "umbra", casino: "casino", board: "board", noct: "noct" };
   const KKEY = "launcherHub.key";
 
   const $ = (id) => document.getElementById(id);
   const setStatus = (msg) => { $("statusText").textContent = msg; };
-
-  // ---------- IndexedDB ----------
-  function openDB() {
-    return new Promise((resolve, reject) => {
-      const req = indexedDB.open(DB_NAME);
-      req.onupgradeneeded = (e) => {
-        const db = e.target.result;
-        if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME);
-      };
-      req.onsuccess = () => {
-        const db = req.result;
-        if (db.objectStoreNames.contains(STORE_NAME)) return resolve(db);
-        const next = (db.version || 1) + 1;
-        db.close();
-        const up = indexedDB.open(DB_NAME, next);
-        up.onupgradeneeded = (e) => {
-          const d = e.target.result;
-          if (!d.objectStoreNames.contains(STORE_NAME)) d.createObjectStore(STORE_NAME);
-        };
-        up.onsuccess = () => resolve(up.result);
-        up.onerror = () => reject(up.error);
-      };
-      req.onerror = () => reject(req.error);
-    });
-  }
-  const idb = (db, mode, fn) => new Promise((resolve, reject) => {
-    const req = fn(db.transaction(STORE_NAME, mode).objectStore(STORE_NAME));
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-
-  async function refreshCache() {
-    const badge = $("cacheBadge"), text = $("cacheText");
-    try {
-      const db = await openDB();
-      const n = await idb(db, "readonly", (s) => s.count(GAME_KEY));
-      badge.setAttribute("class", "badge" + (n ? " ok" : ""));
-      text.textContent = n ? "Cached in this browser. Launches instantly." : "Not downloaded yet.";
-    } catch (e) {
-      badge.setAttribute("class", "badge");
-      text.textContent = "Cache unavailable in this browser.";
-    }
-  }
 
   // ---------- about:blank ----------
   function openBlank(loadingMsg) {
@@ -307,76 +258,28 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
     });
   }
 
-  // ---------- Eaglercraft ----------
-  function showProgress(on) { $("prog").setAttribute("class", "prog" + (on ? " on" : "")); }
-  function progress(got, total) {
-    const mb = (n) => (n / 1048576).toFixed(1);
-    const fill = $("fill");
-    if (total) {
-      fill.setAttribute("class", "fill");
-      fill.style.width = Math.min(100, (got / total) * 100).toFixed(1) + "%";
-      $("ptxt").textContent = Math.round((got / total) * 100) + "%  ·  " + mb(got) + " / " + mb(total) + " MB";
-    } else {
-      fill.setAttribute("class", "fill ind");
-      $("ptxt").textContent = mb(got) + " MB downloaded";
-    }
-  }
-  async function download() {
-    const resp = await fetch(RAW_URL);
-    if (!resp.ok) throw new Error("HTTP " + resp.status);
-    if (!resp.body || !resp.body.getReader) return await resp.text();
-    const total = parseInt(resp.headers.get("content-length") || "0", 10);
-    const reader = resp.body.getReader(), chunks = [];
-    let got = 0;
-    showProgress(true); progress(0, total);
-    for (;;) {
-      const r = await reader.read();
-      if (r.done) break;
-      chunks.push(r.value); got += r.value.length; progress(got, total);
-    }
-    return await new Blob(chunks).text();
+  // ---------- Eaglercraft (logic is loaded from the backend) ----------
+  let mcMod = null, mcTry = null;
+  function loadMc() {
+    if (mcMod) return Promise.resolve(mcMod);
+    if (!mcTry) mcTry = (async () => {
+      const r = await callBackend("mc");
+      if (!r || !r.ok) { mcTry = null; throw new Error((r && REASONS[r.status]) || "Unavailable"); }
+      const code = await r.text();
+      mcMod = new Function("ctx", code)({ $: $, setStatus: setStatus, render: render, remember: remember });
+      return mcMod;
+    })().catch((e) => { mcTry = null; throw e; });
+    return mcTry;
   }
   async function launchMc() {
     const win = openBlank("Loading Eaglercraft…");
     if (!win) return;
-    try {
-      setStatus("Opening IndexedDB…");
-      const db = await openDB();
-      setStatus("Checking cached version…");
-      let html = await idb(db, "readonly", (s) => s.get(GAME_KEY));
-      if (html && html.slice(0, 100).trim().startsWith(LFS)) html = null;
-      if (html) {
-        setStatus("Loaded from cache. Launching…");
-      } else {
-        setStatus("Downloading game file (~89 MB)…");
-        html = await download();
-        if (html.slice(0, 100).trim().startsWith(LFS)) throw new Error("Received LFS pointer instead of file.");
-        setStatus("Saving to cache…");
-        await idb(db, "readwrite", (s) => s.put(html, GAME_KEY));
-        showProgress(false);
-      }
-      render(win, html, BASE_URL);
-      remember("mc");
-      refreshCache();
-      setStatus("Eaglercraft launched!");
-    } catch (err) {
-      console.error(err);
-      showProgress(false);
-      try { win.close(); } catch (e) {}
-      setStatus("Error: " + err.message);
-    }
+    try { const m = await loadMc(); await m.launch(win); }
+    catch (err) { try { win.close(); } catch (e) {} setStatus("Eaglercraft: " + (err.message || "Unavailable")); }
   }
   async function clearMc() {
-    try {
-      setStatus("Clearing stored cache…");
-      const db = await openDB();
-      await idb(db, "readwrite", (s) => s.delete(GAME_KEY));
-      await refreshCache();
-      setStatus("Cache cleared successfully!");
-    } catch (err) {
-      console.error(err);
-      setStatus("Error clearing cache: " + err.message);
-    }
+    try { const m = await loadMc(); await m.clear(); }
+    catch (err) { setStatus("Eaglercraft: " + (err.message || "Unavailable")); }
   }
 
   // ---------- simple embedded pages ----------
@@ -444,6 +347,12 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
       b.setAttribute("title", on ? "" : (why || "Switched off"));
       if (!on) b.textContent = why && why.length < 40 ? why : "Unavailable";
     });
+    ["mc-launch", "mc-clear"].forEach((a) => {
+      const b = document.querySelector('[data-action="' + a + '"]');
+      if (b) { b.disabled = !(mods && mods.mc); if (!(mods && mods.mc)) b.setAttribute("title", why || "Switched off"); }
+    });
+    if (mods && mods.mc) { try { (await loadMc()).refresh(); } catch (e) {} }
+    else { $("cacheText").textContent = why || "Unavailable"; }
     if (why) setStatus(why);
   }
 
@@ -451,7 +360,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
     "mc-launch": launchMc,
     "mc-clear": clearMc,
     vault: () => openRemote("vault"),
-    noct: () => openPage("noct", NOCTURNE_HTML),
+    noct: () => openRemote("noct"),
     casino: () => openRemote("casino"),
     board: () => openRemote("board")
   };
@@ -479,7 +388,6 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
   fit();
 
   renderRecent();
-  refreshCache();
   checkBackend();
 })();
 ]]>
