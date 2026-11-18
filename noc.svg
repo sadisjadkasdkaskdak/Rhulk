@@ -1,0 +1,488 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="background:#05060d">
+<title>Launcher Hub</title>
+<foreignObject x="0" y="0" width="100%" height="100%">
+<div xmlns="http://www.w3.org/1999/xhtml" class="root">
+<style><![CDATA[
+.root{--pad:32px;--panel:#12101a;--line:rgba(184,176,218,.3);--line2:rgba(184,176,218,.18);--acc:#b8b0da;--acc2:#cdc4ff;--txt:#eae6ff;--mut:#b7b3c7;--ink:#14121c;
+  width:100%;height:100%;position:relative;overflow:hidden;background:#05060d;color:var(--txt);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;font-weight:500;line-height:1.5;-webkit-text-size-adjust:100%}
+.root *{box-sizing:border-box}
+.rad{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.scroll{position:absolute;left:0;top:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  background:radial-gradient(900px 420px at 85% -80px,rgba(184,176,218,.20),transparent 70%)}
+.page{min-height:100%;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px var(--pad);background:#05060d;border-bottom:1px solid var(--line2)}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:600;font-size:17px;letter-spacing:-.02em}
+.brand i{width:12px;height:12px;border-radius:50%;background:var(--txt);box-shadow:0 0 0 5px rgba(184,176,218,.16)}
+.tabs{display:flex;gap:8px;margin-left:auto}
+.tab{display:flex;align-items:center;justify-content:center;min-height:42px;padding:0 20px;border:1px solid rgba(184,176,218,.45);color:var(--txt);font-weight:600;font-size:13px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:background .2s}
+.tab:hover{background:rgba(184,176,218,.12)}
+#t-mc:checked ~ .scroll .tab.mc,#t-br:checked ~ .scroll .tab.br{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+#t-mc:checked ~ .scroll .tab.mc:hover,#t-br:checked ~ .scroll .tab.br:hover{background:var(--acc2)}
+#t-mc:focus-visible ~ .scroll .tab.mc,#t-br:focus-visible ~ .scroll .tab.br{outline:2px solid var(--acc2);outline-offset:2px}
+.main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:40px var(--pad) 40px}
+.view{display:none;animation:in .6s cubic-bezier(.16,1,.3,1) both}
+#t-home:checked ~ .scroll .v-home,#t-mc:checked ~ .scroll .v-mc,#t-br:checked ~ .scroll .v-br{display:block}
+@keyframes in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+.hero{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);padding:40px 36px 34px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb.a{width:280px;height:280px;right:-96px;top:-120px;background:radial-gradient(circle,rgba(184,176,218,.55),rgba(184,176,218,0) 68%)}
+.orb.b{width:72px;height:72px;right:22px;top:22px;border:1px solid rgba(184,176,218,.55)}
+.orb.c{width:12px;height:12px;left:20px;top:20px;background:var(--txt)}
+.hero>*:not(.orb){position:relative;z-index:1}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:-.03em}
+.lead{margin:12px 0 0;color:var(--mut);max-width:62ch}
+.sect{margin:32px 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.cats,.grid,.tips{display:grid;gap:14px}
+.cats{margin-top:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.grid{margin-top:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.tips{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.cat{display:flex;flex-direction:column;gap:8px;padding:24px;background:var(--panel);border:1px solid var(--line);cursor:pointer;transition:border-color .2s,background .2s}
+.cat:hover{border-color:var(--acc);background:#171424}
+.cat h2{margin:6px 0 0;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.cat p{margin:0;color:var(--mut);font-size:14px}
+.cat .go{margin-top:6px;color:var(--acc);font-weight:600;font-size:13px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--line2);color:var(--mut)}
+.back{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;cursor:pointer;color:var(--mut);font-size:13px;font-weight:600}
+.back:hover{color:var(--txt)}
+.card{display:flex;flex-direction:column;gap:12px;padding:22px;background:var(--panel);border:1px solid var(--line)}
+.card h2{margin:0;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.card p{margin:0;color:var(--mut);font-size:14px}
+.card .spacer{flex:1}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.btn{flex:1 1 150px;min-height:46px;padding:0 18px;border:0;background:var(--acc);color:var(--ink);font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--acc2)}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid rgba(184,176,218,.45)}
+.btn.ghost:hover{background:rgba(184,176,218,.12)}
+.btn:focus-visible,.chip-btn:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
+.badge i{width:8px;height:8px;border-radius:50%;background:#6b6783}
+.badge.ok i{background:#8fe3b0;box-shadow:0 0 0 4px rgba(143,227,176,.16)}
+.prog{display:none;flex-direction:column;gap:6px}.prog.on{display:flex}
+.track{height:6px;background:rgba(184,176,218,.16)}
+.fill{height:100%;width:0;background:var(--acc);transition:width .2s}.fill.ind{width:100%;opacity:.35}
+.ptxt{font-size:12px;color:var(--mut)}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;color:var(--mut);font-size:14px}
+.steps li::before{content:counter(s);flex:none;width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--line);color:var(--acc);font-size:12px;font-weight:600}
+.grid.wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{padding:10px 14px;background:transparent;border:1px solid rgba(184,176,218,.45);color:var(--txt);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer}
+.chip-btn:hover{background:rgba(184,176,218,.12)}
+.hint{color:var(--mut);font-size:14px}
+.tip{padding:14px 16px;border:1px solid var(--line2);background:rgba(184,176,218,.06);color:var(--mut);font-size:14px}
+.tip b{display:block;color:var(--txt);font-weight:600;margin-bottom:2px}
+.statusbar{position:sticky;bottom:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px var(--pad);background:rgba(5,6,13,.985);border-top:1px solid var(--line2);color:var(--mut);font-size:13px}
+.statusbar i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(184,176,218,.16)}
+.narrow{--pad:16px}.narrow .main{padding-top:20px}.narrow h1{font-size:30px}.narrow .hero{padding:46px 20px 24px}.narrow .tabs{width:100%;margin-left:0}.narrow .tab{flex:1;padding:0 8px}.narrow .orb.b{width:52px;height:52px}.narrow .cat,.narrow .card{padding:18px}
+]]></style>
+
+<input class="rad" type="radio" name="tab" id="t-home" checked="checked"/>
+<input class="rad" type="radio" name="tab" id="t-mc"/>
+<input class="rad" type="radio" name="tab" id="t-br"/>
+
+<div class="scroll"><div class="page">
+  <div class="top">
+    <label class="brand" for="t-home"><i></i>Launcher Hub</label>
+    <div class="tabs">
+      <label class="tab mc" for="t-mc">Minecraft</label>
+      <label class="tab br" for="t-br">Browser/Games</label>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- HOME -->
+    <div class="view v-home">
+      <div class="hero"><i class="orb a"></i><i class="orb b"></i><i class="orb c"></i>
+        <div class="kicker">Home</div>
+        <h1>Launcher Hub</h1>
+        <p class="lead">Everything opens in its own about:blank tab. Pick a tab to get started.</p>
+      </div>
+      <div class="cats">
+        <label class="cat" for="t-mc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#b8b0da" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z"/><path d="M3.5 7 12 11.5 20.5 7M12 11.5v10"/></svg><h2>Minecraft</h2><p>Eaglercraft offline launcher. Download it once, then it loads from your browser cache.</p><div class="pills"><span class="pill">1 launcher</span><span class="pill">Offline cache</span></div><span class="go">Open tab &#8594;</span></label>
+        <label class="cat" for="t-br"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#b8b0da" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7"/><rect x="13.5" y="3.5" width="7" height="7"/><rect x="3.5" y="13.5" width="7" height="7"/><rect x="13.5" y="13.5" width="7" height="7"/></svg><h2>Browser/Games</h2><p>Game hubs and web apps: Umbra, Nocturne, Cup Casino and Board Games.</p><div class="pills"><span class="pill">4 apps</span><span class="pill">about:blank</span></div><span class="go">Open tab &#8594;</span></label>
+      </div>
+      <div class="sect">Recently launched</div>
+      <div class="chips" id="recentList"></div>
+      <div class="sect">Good to know</div>
+      <div class="tips">
+        <div class="tip"><b>Allow pop-ups</b>Launches open in a new about:blank tab, so your browser has to allow pop-ups for this page.</div>
+        <div class="tip"><b>Eaglercraft caches itself</b>The first launch downloads about 89 MB. After that it starts straight from the cache.</div>
+        <div class="tip"><b>Fresh copy</b>Use Clear Cache on the Minecraft tab to throw the cached copy away and download it again.</div>
+      </div>
+    </div>
+
+    <!-- MINECRAFT -->
+    <div class="view v-mc">
+      <label class="back" for="t-home">&#8592; Home</label>
+      <div class="hero"><i class="orb a"></i><i class="orb b"></i><i class="orb c"></i>
+        <div class="kicker">Minecraft</div>
+        <h1>Eaglercraft</h1>
+        <p class="lead">Offline Eaglercraft launcher. Downloads once, then launches from the cache in your browser.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h2>Launcher</h2>
+          <div class="pills"><span class="pill">~89 MB first download</span><span class="pill">Opens in about:blank</span></div>
+          <div class="badge" id="cacheBadge"><i></i><span id="cacheText">Checking cache&#8230;</span></div>
+          <div class="prog" id="prog"><div class="track"><div class="fill" id="fill"></div></div><div class="ptxt" id="ptxt"></div></div>
+          <div class="spacer"></div>
+          <div class="row">
+            <button type="button" class="btn" data-action="mc-launch">Download &amp; Launch</button>
+            <button type="button" class="btn ghost" data-action="mc-clear">Clear Cache</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>How it works</h2>
+          <ol class="steps">
+            <li>Press Download &amp; Launch. The game file is fetched the first time only.</li>
+            <li>It is saved in your browser (IndexedDB), so the next launch is instant.</li>
+            <li>The game opens in a new about:blank tab. Allow pop-ups if nothing opens.</li>
+            <li>Clear Cache removes the saved copy so the next launch downloads a fresh one.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- BROWSER / GAMES -->
+    <div class="view v-br">
+      <label class="back" for="t-home">&#8592; Home</label>
+      <div class="hero"><i class="orb a"></i><i class="orb b"></i><i class="orb c"></i>
+        <div class="kicker">Browser / Games</div>
+        <h1>Browser &amp; Games</h1>
+        <p class="lead">Game hubs and web apps. Each one opens in its own about:blank tab.</p>
+      </div>
+      <div class="grid wide">
+        <div class="card">
+          <h2>Umbra</h2>
+          <div class="pills"><span class="pill">Game library</span><span class="pill">1,900+ games</span></div>
+          <p>The game library: live search, an A&#8211;Z jump bar, three pin slots, recently played and a random pick. Games load from a CDN when you click them.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="vault">Launch Umbra</button></div>
+        </div>
+        <div class="card">
+          <h2>Nocturne</h2>
+          <div class="pills"><span class="pill">Web app</span></div>
+          <p>The Nocturne web app. It starts with a short ad notice that you can dismiss with OK.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="noct">Launch Nocturne</button></div>
+        </div>
+        <div class="card">
+          <h2>Cup Casino</h2>
+          <div class="pills"><span class="pill">Play money</span><span class="pill">Sandbox</span></div>
+          <p>Your private play-money sandbox: originals, slots, table games and sports. No real money involved.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="casino">Launch Cup Casino</button></div>
+        </div>
+        <div class="card">
+          <h2>Board Games</h2>
+          <div class="pills"><span class="pill">5 games</span><span class="pill">Bots</span><span class="pill">Self-contained</span></div>
+          <p>Scrabble, Risk, Clue, Monopoly and Balatro, rebuilt from scratch. Play against bots of every difficulty. Each game keeps running when you go back to the menu.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="board">Launch Board Games</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="statusbar"><i></i><span id="statusText">Ready.</span></div>
+</div></div>
+</div>
+</foreignObject>
+
+<script type="text/javascript">
+<![CDATA[
+(function () {
+  const RAW_URL = "https://media.githubusercontent.com/media/aerograde/eagle-26.2/main/dist/direct-connect.html";
+  const BASE_URL = "https://media.githubusercontent.com/media/aerograde/eagle-26.2/main/dist/";
+  const DB_NAME = "EaglercraftCacheDB", STORE_NAME = "game_files", GAME_KEY = "eaglercraft_index";
+  const LFS = "version https://git-lfs.github.com/spec/v1";
+  const XHTML = "http://www.w3.org/1999/xhtml";
+  const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
+
+  // Pages embedded so they can be written into about:blank tabs
+  const NOCTURNE_HTML = "<!DOCTYPE html>\n<html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /><link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23111%22%2F%3E%3Cpath%20d%3D%22M9%2023L16%209L23%2023%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E\" /><title>Nocturne<\/title><script async=\"\" src=\"https://www.googletagmanager.com/gtag/js?id=G-69T9E59SM7\"><\/script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag(\"js\",new Date());gtag(\"config\",\"G-69T9E59SM7\");<\/script><script data-cfasync=\"false\" src=\"https://abscloud.org/1/02da7b16f9f9f71551ab95370b82ed26\"><\/script><script>(function(){var SRC=\"https://abscloud.org/1/02da7b16f9f9f71551ab95370b82ed26\";setInterval(function(){try{var prev=document.getElementById(\"noct-ad-timer\");if(prev)prev.remove();var s=document.createElement(\"script\");s.id=\"noct-ad-timer\";s.async=true;s.src=SRC;(document.head||document.documentElement).appendChild(s);}catch(e){}},900000);}());<\/script><style>#nocAdsNote{position:fixed;inset:0;z-index:2147483600;display:grid;place-items:center;padding:24px;background:rgba(5,6,13,0);transition:background .5s cubic-bezier(.16,1,.3,1)}#nocAdsNote.on{background:rgba(5,6,13,.72)}#nocAdsNote.out{background:rgba(5,6,13,0);pointer-events:none}#nocAdsNote .panel{box-sizing:border-box;width:min(480px,100%);max-height:min(640px,calc(100vh - 48px));overflow:auto;padding:32px 32px 24px;border-radius:0;background:#12101a;border:1px solid rgba(184,176,218,.3);color:#eae6ff;box-shadow:0 30px 90px rgba(0,0,0,.55);font:500 15px/1.5 ui-sans-serif,system-ui,-apple-system,\"Segoe UI\",sans-serif;transform:translateY(46px) scale(.94);opacity:0;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .45s ease}#nocAdsNote.on .panel{transform:none;opacity:1}#nocAdsNote.out .panel{transform:translateY(22px) scale(.98);opacity:0;transition-duration:.42s,.32s}#nocAdsNote .panel>*{opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .6s cubic-bezier(.16,1,.3,1)}#nocAdsNote.on .panel>*{opacity:1;transform:none}#nocAdsNote.on .kicker{transition-delay:.06s}#nocAdsNote.on h2{transition-delay:.12s}#nocAdsNote.on .lead{transition-delay:.18s}#nocAdsNote.on .offer{transition-delay:.26s}#nocAdsNote.on .ok{transition-delay:.34s}#nocAdsNote .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b8b0da;font-weight:600}#nocAdsNote h2{margin:8px 0 0;font-size:28px;line-height:1.15;font-weight:600;letter-spacing:-.03em}#nocAdsNote .lead{margin:12px 0 0;color:#b7b3c7}#nocAdsNote .offer{margin-top:22px;padding:16px 16px 14px;border-radius:0;background:rgba(184,176,218,.08);border:1px solid rgba(184,176,218,.18)}#nocAdsNote .offer strong{display:block;font-size:15px;color:#eae6ff}#nocAdsNote .offer p{margin:6px 0 12px;color:#b7b3c7;font-size:14px}#nocAdsNote .offer a{display:inline-flex;align-items:center;color:#14121c;background:#b8b0da;text-decoration:none;font-weight:600;font-size:13px;padding:8px 12px;border-radius:0}#nocAdsNote .ok{margin-top:18px;width:100%;padding:12px 16px!important;border:0!important;border-radius:0!important;background:#b8b0da!important;color:#14121c!important;font:600 14px/1 inherit;cursor:pointer}#nocAdsNote .ok:hover{background:#cdc4ff!important}@media (max-width:720px){#nocAdsNote{padding:14px}#nocAdsNote h2{font-size:24px}#nocAdsNote .panel{padding:24px 20px 18px;border-radius:0}}@media (prefers-reduced-motion:reduce){#nocAdsNote,#nocAdsNote .panel,#nocAdsNote .panel>*{transition:none}}#nocAdsNote .panel{position:relative;overflow:hidden}#nocAdsNote .orb{position:absolute;border-radius:50%;pointer-events:none}#nocAdsNote .orb.a{width:220px;height:220px;right:-84px;top:-96px;background:radial-gradient(circle,rgba(184,176,218,.55),rgba(184,176,218,0) 68%)}#nocAdsNote .orb.b{width:64px;height:64px;right:18px;top:18px;border:1px solid rgba(184,176,218,.55)}#nocAdsNote .orb.c{width:12px;height:12px;left:22px;top:22px;background:#eae6ff}#nocAdsNote .view{position:relative;z-index:1}#nocAdsNote .perks{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}#nocAdsNote .perks li{display:flex;align-items:center;gap:10px;font-size:14px;color:#eae6ff}#nocAdsNote .perks i{width:8px;height:8px;border-radius:50%;background:#b8b0da;box-shadow:0 0 0 4px rgba(184,176,218,.16);flex:none}#nocAdsNote .actions{display:flex;gap:10px;margin-top:22px}#nocAdsNote .actions a,#nocAdsNote .actions button{flex:1;display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:42px;padding:12px 14px;border-radius:0;text-decoration:none;font:600 13px/1 inherit;cursor:pointer}#nocAdsNote .actions a{background:#b8b0da!important;color:#14121c!important;border:0!important;border-radius:0!important;padding:12px 14px!important;text-decoration:none!important}#nocAdsNote .actions a:hover{background:#cdc4ff!important}#nocAdsNote .ghost{background:transparent!important;color:#eae6ff!important;border:1px solid rgba(184,176,218,.45)!important;border-radius:0!important;padding:12px 14px!important}#nocAdsNote input{width:100%;box-sizing:border-box;margin-top:14px;border-radius:0;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:#eae6ff;padding:11px 12px;font:inherit}#nocAdsNote .msg{margin-top:10px;font-size:13px;color:#b7b3c7}<\/style><script>(function(){try{\nif(/(?:^|; )noc_ads_ack=1(?:;|$)/.test(document.cookie))return;\nvar X=\"http://www.w3.org/1999/xhtml\";\nfunction el(name){return document.createElementNS(X,name);}\nfunction host(){var list=document.getElementsByTagNameNS(X,\"body\");return list.length?list[0]:document.documentElement;}\nfunction frameInfo(){\nvar frames=document.getElementsByTagNameNS(X,\"iframe\");\nfor(var n=0;n<frames.length;n++){\nvar src=frames[n].getAttribute(\"src\")||frames[n].src||\"\";\nif(src.indexOf(\"http\")!==0)continue;\ntry{return {frame:frames[n],origin:new URL(src).origin};}catch(e){}\n}\nreturn null;\n}\nfunction paint(){\nif(document.getElementById(\"nocAdsNote\"))return;\nvar box=el(\"div\");box.id=\"nocAdsNote\";box.setAttribute(\"role\",\"dialog\");box.setAttribute(\"aria-modal\",\"true\");box.setAttribute(\"aria-labelledby\",\"nocAdsTitle\");\nvar panel=el(\"div\");panel.setAttribute(\"class\",\"panel\");\n[\"a\",\"b\",\"c\"].forEach(function(n){var o=el(\"i\");o.setAttribute(\"class\",\"orb \"+n);o.setAttribute(\"aria-hidden\",\"true\");panel.appendChild(o);});\nvar view=el(\"div\");view.setAttribute(\"class\",\"view\");panel.appendChild(view);\nvar prev=document.documentElement.style.overflow;\nfunction ack(){if(box.classList.contains(\"out\"))return;var sec=location.protocol===\"https:\"?\"; Secure\":\"\";document.cookie=\"noc_ads_ack=1; Path=/; Max-Age=31536000; SameSite=Lax\"+sec;document.documentElement.style.overflow=prev;box.classList.remove(\"on\");box.classList.add(\"out\");setTimeout(function(){if(box.parentNode)box.remove();},480);}\nfunction clear(){while(view.firstChild)view.removeChild(view.firstChild);}\nfunction perk(list,label){var li=el(\"li\");var i=el(\"i\");li.appendChild(i);li.appendChild(document.createTextNode(label));list.appendChild(li);}\nfunction showMain(){\nclear();\nvar k=el(\"div\");k.setAttribute(\"class\",\"kicker\");k.textContent=\"Advertising\";\nvar h=el(\"h2\");h.id=\"nocAdsTitle\";h.textContent=\"Nocturne runs on ads\";\nvar lead=el(\"p\");lead.setAttribute(\"class\",\"lead\");lead.textContent=\"A click on the page can open an ad in a tab behind this one. A one-time $5 upgrade stays on the account.\";\nvar perks=el(\"ul\");perks.setAttribute(\"class\",\"perks\");\n[\"Ad-free\",\"+250k tokens\",\"Premium role in chat\",\"Image sending in chat\"].forEach(function(label){perk(perks,label);});\nvar actions=el(\"div\");actions.setAttribute(\"class\",\"actions\");\nvar a=el(\"a\");a.setAttribute(\"href\",\"https://ko-fi.com/midnightsweat\");a.setAttribute(\"target\",\"_blank\");a.setAttribute(\"rel\",\"noopener noreferrer\");a.textContent=\"Donate $5\";\nvar donated=el(\"button\");donated.setAttribute(\"type\",\"button\");donated.setAttribute(\"class\",\"ghost\");donated.textContent=\"I donated\";\ndonated.addEventListener(\"click\",showReview);\nactions.appendChild(a);actions.appendChild(donated);\nvar b=el(\"button\");b.setAttribute(\"type\",\"button\");b.setAttribute(\"class\",\"ok\");b.textContent=\"OK\";b.addEventListener(\"click\",ack);\nview.appendChild(k);view.appendChild(h);view.appendChild(lead);view.appendChild(perks);view.appendChild(actions);view.appendChild(b);\n}\nfunction showReview(){\nclear();\nvar k=el(\"div\");k.setAttribute(\"class\",\"kicker\");k.textContent=\"Review\";\nvar h=el(\"h2\");h.id=\"nocAdsTitle\";h.textContent=\"Submit your username\";\nvar lead=el(\"p\");lead.setAttribute(\"class\",\"lead\");lead.textContent=\"Finished donating? Submit the account username. After review, ad-free, +250k tokens, the Premium chat role, and image sending are turned on for that account.\";\nvar input=el(\"input\");input.setAttribute(\"type\",\"text\");input.setAttribute(\"maxlength\",\"32\");input.setAttribute(\"placeholder\",\"Username\");\nvar msg=el(\"div\");msg.setAttribute(\"class\",\"msg\");\nvar actions=el(\"div\");actions.setAttribute(\"class\",\"actions\");\nvar back=el(\"button\");back.setAttribute(\"type\",\"button\");back.setAttribute(\"class\",\"ghost\");back.textContent=\"Back\";back.addEventListener(\"click\",showMain);\nvar send=el(\"button\");send.setAttribute(\"type\",\"button\");send.setAttribute(\"class\",\"ok\");send.textContent=\"Submit for review\";\nvar wait=null;\nfunction onResult(ev){\nvar info=frameInfo(); if(!info||ev.origin!==info.origin)return;\nvar d=ev.data||{}; if(d.type!==\"noc-upgrade-result\")return;\nwindow.removeEventListener(\"message\",onResult); if(wait)clearTimeout(wait);\nsend.disabled=false;\nif(!d.ok){msg.textContent=d.error||\"Could not submit.\";return;}\nif(d.status===\"active\"||d.status===\"approved\"){msg.textContent=\"That account already has the upgrade.\";return;}\nmsg.textContent=\"Submitted. It is in review, then the upgrade is turned on for that account.\";\ninput.disabled=true; send.disabled=true;\n}\nsend.addEventListener(\"click\",function(){\nvar name=(input.value||\"\").trim();\nif(name.length<3){msg.textContent=\"Enter the account username.\";return;}\nvar info=frameInfo();\nif(!info){msg.textContent=\"Continue into Nocturne, then submit your username.\";return;}\nsend.disabled=true; msg.textContent=\"Sending\u2026\";\nwindow.addEventListener(\"message\",onResult);\nwait=setTimeout(function(){window.removeEventListener(\"message\",onResult);send.disabled=false;msg.textContent=\"Could not submit. Continue into Nocturne and try again.\";},8000);\ninfo.frame.contentWindow.postMessage({type:\"noc-upgrade\",username:name},info.origin);\n});\nactions.appendChild(back);actions.appendChild(send);\nview.appendChild(k);view.appendChild(h);view.appendChild(lead);view.appendChild(input);view.appendChild(msg);view.appendChild(actions);\n}\nshowMain();\nbox.addEventListener(\"keydown\",function(ev){if(ev.key===\"Escape\"){ev.preventDefault();ack();}});\nbox.appendChild(panel);host().appendChild(box);document.documentElement.style.overflow=\"hidden\";\nrequestAnimationFrame(function(){requestAnimationFrame(function(){box.classList.add(\"on\");});});\n}\nif(document.readyState===\"loading\")document.addEventListener(\"DOMContentLoaded\",paint);else paint();\n}catch(e){}})();<\/script><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#9a9a9a;font:500 13px system-ui,-apple-system,Segoe UI,sans-serif}foreignObject{overflow:visible}#l{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}#s{width:28px;height:28px;border:3px solid #333;border-top-color:#fff;border-radius:50%;animation:r .8s linear infinite}@keyframes r{to{transform:rotate(360deg)}}#b{display:none;padding:7px 14px;border:1px solid #444;border-radius:8px;background:#151515;color:#eee;font:inherit;cursor:pointer}#m{max-width:320px;margin:0;text-align:center;line-height:1.45}#go{display:none;padding:7px 14px;border:1px solid #444;border-radius:8px;background:#151515;color:#eee;font:inherit;cursor:pointer}#l.n #s{display:none}#l.n #go{display:block}#l.x #s{display:none}#l.x #b{display:block}iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#000}<\/style><\/head><body><div id=\"l\"><div id=\"s\"><\/div><p id=\"m\"><\/p><button id=\"go\" type=\"button\">Continue<\/button><button id=\"b\" type=\"button\">Try again<\/button><\/div><script>(function(){'use strict';var a=String['fromCharCode'](0x66,0x32,0x65,0x61,0x39,0x61,0x37,0x34,0x31,0x32,0x37,0x61,0x31,0x65,0x36,0x32,0x62,0x65,0x39,0x66,0x35,0x30,0x66,0x32),b=[String['fromCharCode'](0x44,0x6b,0x59,0x52,0x45,0x55,0x70,0x62,0x47,0x42,0x74,0x66,0x58,0x56,0x51,0x56,0x52,0x42,0x64,0x59,0x56,0x30,0x77,0x4a,0x56,0x67,0x6f,0x61,0x44,0x77,0x68,0x64,0x42,0x56,0x4d,0x48,0x58,0x41,0x68,0x48,0x51,0x51,0x6c,0x5a,0x41,0x55,0x4e,0x57,0x51,0x46,0x4d,0x43),String['fromCharCode'](0x44,0x6b,0x59,0x52,0x45,0x55,0x70,0x62,0x47,0x42,0x74,0x51,0x58,0x52,0x6b,0x53,0x58,0x67,0x5a,0x56,0x56,0x78,0x42,0x4b,0x42,0x67,0x68,0x61,0x55,0x77,0x64,0x51,0x57,0x77,0x4e,0x44,0x46,0x77,0x51,0x4a,0x42,0x45,0x41,0x47,0x51,0x77,0x46,0x56)];function c(t){var u=atob(t),v='';for(var w=0x0;w<u['length'];w++)v+=String['fromCharCode'](u['charCodeAt'](w)^a['charCodeAt'](w%a['length']));return v;}var d=b['map'](c),e=0x0,f=![],g=document['getElementById']('l'),h=document['getElementById']('m'),i=document['getElementById']('b'),j=document['getElementById']('go'),k=String['fromCharCode'](0x54,0x68,0x69,0x73,0x20,0x69,0x73,0x20,0x61,0x20,0x4a,0x53,0x44,0x45,0x4c,0x49,0x56,0x52,0x20,0x6c,0x69,0x6e,0x6b,0x2c,0x20,0x61,0x73,0x73,0x65,0x74,0x73,0x20,0x61,0x6e,0x64,0x20,0x65,0x6c,0x65,0x6d,0x65,0x6e,0x74,0x73,0x20,0x6d,0x69,0x67,0x68,0x74,0x20,0x6c,0x6f,0x61,0x64,0x20,0x73,0x6c,0x6f,0x77,0x65,0x72,0x20,0x6f,0x72,0x20,0x6e,0x6f,0x74,0x20,0x6c,0x6f,0x61,0x64,0x20,0x61,0x74,0x20,0x61,0x6c,0x6c),l=String['fromCharCode'](0x6e,0x6f,0x63,0x2d,0x72,0x38,0x6b,0x33,0x6d,0x71,0x70,0x2d,0x6e,0x6f,0x74,0x69,0x63,0x65);function m(u){h['textContent']=u;}function n(){try{return localStorage['getItem'](l)==='1';}catch(t){return![];}}function o(){try{localStorage['setItem'](l,'1');}catch(t){}}function p(){if(f)return;f=!![],m('');var t=document['getElementById']('appframe');if(t)t['parentNode']['removeChild'](t);var u=document['createElementNS']('http://www.w3.org/1999/xhtml','iframe');u['id']='appframe',u['setAttribute']('allow','fullscreen;\\x20autoplay;\\x20clipboard-read;\\x20clipboard-write;\\x20microphone;\\x20camera;\\x20display-capture;\\x20encrypted-media;\\x20picture-in-picture;\\x20gamepad;\\x20screen-wake-lock'),u['setAttribute']('referrerpolicy','no-referrer'),u['src']=d[e]+location['hash'],g['parentNode']['appendChild'](u),setTimeout(function(){g['style']['display']='none';},0x190);}function q(){if(f)return;g['style']['display']='',g['className']='x',m(String['fromCharCode'](0x43,0x6f,0x75,0x6c,0x64,0x6e,0x27,0x74,0x20,0x72,0x65,0x61,0x63,0x68,0x20,0x4e,0x6f,0x63,0x74,0x75,0x72,0x6e,0x65,0x2e,0x20,0x43,0x68,0x65,0x63,0x6b,0x20,0x79,0x6f,0x75,0x72,0x20,0x63,0x6f,0x6e,0x6e,0x65,0x63,0x74,0x69,0x6f,0x6e,0x2c,0x20,0x74,0x68,0x65,0x6e,0x20,0x74,0x72,0x79,0x20,0x61,0x67,0x61,0x69,0x6e,0x2e));}function r(t){return new Promise(function(u,v){var w=![],x=setTimeout(function(){if(w)return;w=!![],v();},0x4b0);fetch(t,{'mode':'no-cors','cache':'no-store'})['then'](function(){if(w)return;w=!![],clearTimeout(x),u();},function(){if(w)return;w=!![],clearTimeout(x),v();});});}function s(){f=![],g['className']='',g['style']['display']='',m(String['fromCharCode'](0x43,0x6f,0x6e,0x6e,0x65,0x63,0x74,0x69,0x6e,0x67,0x2026));var t=d['map'](function(){return 0x0;});function u(){if(f)return;if(t[0x0]===0x1){e=0x0,p();return;}if(t[0x0]===0x2){for(var v=0x1;v<t['length'];v++)if(t[v]===0x1){e=v,p();return;}if(t['every'](function(w){return w===0x2;}))q();}}d['forEach'](function(v,w){r(v)['then'](function(){t[w]=0x1,u();},function(){t[w]=0x2,u();});});}i['addEventListener']('click',s);if(!n())g['className']='n',m(k),j['addEventListener']('click',function(){o(),s();});else s();}());<\/script><\/body><\/html>";
+  // Private content is fetched from your backend at launch time (nothing else is stored in this file)
+  const BACKEND = "https://YOUR-PROJECT.vercel.app/api";
+  const REMOTE = { vault: "umbra", casino: "casino", board: "board" };
+  const KKEY = "launcherHub.key";
+
+  const $ = (id) => document.getElementById(id);
+  const setStatus = (msg) => { $("statusText").textContent = msg; };
+
+  // ---------- IndexedDB ----------
+  function openDB() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME);
+      };
+      req.onsuccess = () => {
+        const db = req.result;
+        if (db.objectStoreNames.contains(STORE_NAME)) return resolve(db);
+        const next = (db.version || 1) + 1;
+        db.close();
+        const up = indexedDB.open(DB_NAME, next);
+        up.onupgradeneeded = (e) => {
+          const d = e.target.result;
+          if (!d.objectStoreNames.contains(STORE_NAME)) d.createObjectStore(STORE_NAME);
+        };
+        up.onsuccess = () => resolve(up.result);
+        up.onerror = () => reject(up.error);
+      };
+      req.onerror = () => reject(req.error);
+    });
+  }
+  const idb = (db, mode, fn) => new Promise((resolve, reject) => {
+    const req = fn(db.transaction(STORE_NAME, mode).objectStore(STORE_NAME));
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+
+  async function refreshCache() {
+    const badge = $("cacheBadge"), text = $("cacheText");
+    try {
+      const db = await openDB();
+      const n = await idb(db, "readonly", (s) => s.count(GAME_KEY));
+      badge.setAttribute("class", "badge" + (n ? " ok" : ""));
+      text.textContent = n ? "Cached in this browser. Launches instantly." : "Not downloaded yet.";
+    } catch (e) {
+      badge.setAttribute("class", "badge");
+      text.textContent = "Cache unavailable in this browser.";
+    }
+  }
+
+  // ---------- about:blank ----------
+  function openBlank(loadingMsg) {
+    const win = window.open("about:blank", "_blank");
+    if (!win) { setStatus("Pop-up blocked! Allow pop-ups for this page and try again."); return null; }
+    if (loadingMsg) {
+      try {
+        win.document.write('<body style="margin:0;background:#05060d;color:#b7b3c7;font:15px system-ui,sans-serif;display:grid;place-items:center;height:100vh">' + loadingMsg + '</body>');
+      } catch (e) {}
+    }
+    return win;
+  }
+  function render(win, html, base) {
+    let out = html;
+    if (base && !/<base\s/i.test(out)) out = '<base href="' + base + '">' + out;
+    win.document.open();
+    win.document.write(out);
+    win.document.close();
+  }
+
+  // ---------- recently launched ----------
+  const RKEY = "launcherHub.recent";
+  function getRecent() {
+    try { return JSON.parse(localStorage.getItem(RKEY) || "[]").filter((k) => LABELS[k]); } catch (e) { return []; }
+  }
+  function remember(id) {
+    try { localStorage.setItem(RKEY, JSON.stringify([id].concat(getRecent().filter((x) => x !== id)).slice(0, 4))); } catch (e) {}
+    renderRecent();
+  }
+  function renderRecent() {
+    const box = $("recentList");
+    while (box.firstChild) box.removeChild(box.firstChild);
+    const r = getRecent();
+    if (!r.length) {
+      const h = document.createElementNS(XHTML, "span");
+      h.setAttribute("class", "hint");
+      h.textContent = "Nothing launched yet.";
+      box.appendChild(h);
+      return;
+    }
+    r.forEach((id) => {
+      const b = document.createElementNS(XHTML, "button");
+      b.setAttribute("type", "button");
+      b.setAttribute("class", "chip-btn");
+      b.setAttribute("data-action", id === "mc" ? "mc-launch" : id);
+      b.textContent = LABELS[id];
+      box.appendChild(b);
+    });
+  }
+
+  // ---------- Eaglercraft ----------
+  function showProgress(on) { $("prog").setAttribute("class", "prog" + (on ? " on" : "")); }
+  function progress(got, total) {
+    const mb = (n) => (n / 1048576).toFixed(1);
+    const fill = $("fill");
+    if (total) {
+      fill.setAttribute("class", "fill");
+      fill.style.width = Math.min(100, (got / total) * 100).toFixed(1) + "%";
+      $("ptxt").textContent = Math.round((got / total) * 100) + "%  ·  " + mb(got) + " / " + mb(total) + " MB";
+    } else {
+      fill.setAttribute("class", "fill ind");
+      $("ptxt").textContent = mb(got) + " MB downloaded";
+    }
+  }
+  async function download() {
+    const resp = await fetch(RAW_URL);
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    if (!resp.body || !resp.body.getReader) return await resp.text();
+    const total = parseInt(resp.headers.get("content-length") || "0", 10);
+    const reader = resp.body.getReader(), chunks = [];
+    let got = 0;
+    showProgress(true); progress(0, total);
+    for (;;) {
+      const r = await reader.read();
+      if (r.done) break;
+      chunks.push(r.value); got += r.value.length; progress(got, total);
+    }
+    return await new Blob(chunks).text();
+  }
+  async function launchMc() {
+    const win = openBlank("Loading Eaglercraft…");
+    if (!win) return;
+    try {
+      setStatus("Opening IndexedDB…");
+      const db = await openDB();
+      setStatus("Checking cached version…");
+      let html = await idb(db, "readonly", (s) => s.get(GAME_KEY));
+      if (html && html.slice(0, 100).trim().startsWith(LFS)) html = null;
+      if (html) {
+        setStatus("Loaded from cache. Launching…");
+      } else {
+        setStatus("Downloading game file (~89 MB)…");
+        html = await download();
+        if (html.slice(0, 100).trim().startsWith(LFS)) throw new Error("Received LFS pointer instead of file.");
+        setStatus("Saving to cache…");
+        await idb(db, "readwrite", (s) => s.put(html, GAME_KEY));
+        showProgress(false);
+      }
+      render(win, html, BASE_URL);
+      remember("mc");
+      refreshCache();
+      setStatus("Eaglercraft launched!");
+    } catch (err) {
+      console.error(err);
+      showProgress(false);
+      try { win.close(); } catch (e) {}
+      setStatus("Error: " + err.message);
+    }
+  }
+  async function clearMc() {
+    try {
+      setStatus("Clearing stored cache…");
+      const db = await openDB();
+      await idb(db, "readwrite", (s) => s.delete(GAME_KEY));
+      await refreshCache();
+      setStatus("Cache cleared successfully!");
+    } catch (err) {
+      console.error(err);
+      setStatus("Error clearing cache: " + err.message);
+    }
+  }
+
+  // ---------- simple embedded pages ----------
+  function openPage(id, html) {
+    const win = openBlank();
+    if (!win) return;
+    render(win, html);
+    remember(id);
+    setStatus(LABELS[id] + " launched!");
+  }
+
+
+  // ---------- remote pages (served by the private backend) ----------
+  function getKey() { try { return localStorage.getItem(KKEY) || ""; } catch (e) { return ""; } }
+  async function callBackend(m) {
+    for (let i = 0; i < 2; i++) {
+      const h = {}; const k = getKey(); if (k) h["x-hub-key"] = k;
+      const r = await fetch(BACKEND + "?m=" + m + "&t=" + Date.now(), { cache: "no-store", headers: h });
+      if (r.status === 401 && i === 0) {
+        const entered = window.prompt("Access key:");
+        if (entered) { try { localStorage.setItem(KKEY, entered.trim()); } catch (e) {} continue; }
+      }
+      return r;
+    }
+  }
+  const REASONS = {
+    410: "This launcher has been shut down by its owner.",
+    403: "This copy of the launcher is not authorized.",
+    401: "A valid access key is required.",
+    429: "Too many requests. Wait a minute and try again.",
+    503: "This section is switched off right now.",
+    404: "Not found."
+  };
+  async function openRemote(id) {
+    const win = openBlank("Loading " + LABELS[id] + "...");
+    if (!win) return;
+    setStatus("Loading " + LABELS[id] + "...");
+    let msg = "";
+    try {
+      const r = await callBackend(REMOTE[id]);
+      if (r && r.ok) {
+        render(win, await r.text());
+        remember(id);
+        setStatus(LABELS[id] + " launched!");
+        return;
+      }
+      msg = (r && REASONS[r.status]) || "The server returned an error.";
+    } catch (e) {
+      msg = "Could not reach the server. Check your connection.";
+    }
+    try { win.document.body.textContent = msg; } catch (e) {}
+    setStatus(LABELS[id] + ": " + msg);
+  }
+  async function checkBackend() {
+    let mods = null, why = "";
+    try {
+      const r = await callBackend("status");
+      if (r && r.ok) mods = (await r.json()).modules; else why = (r && REASONS[r.status]) || "Offline";
+    } catch (e) { why = "Offline"; }
+    Object.keys(REMOTE).forEach((id) => {
+      const b = document.querySelector('[data-action="' + id + '"]');
+      if (!b) return;
+      const on = mods && mods[REMOTE[id]];
+      b.disabled = !on;
+      b.setAttribute("title", on ? "" : (why || "Switched off"));
+      if (!on) b.textContent = why && why.length < 40 ? why : "Unavailable";
+    });
+    if (why) setStatus(why);
+  }
+
+  const ACTIONS = {
+    "mc-launch": launchMc,
+    "mc-clear": clearMc,
+    vault: () => openRemote("vault"),
+    noct: () => openPage("noct", NOCTURNE_HTML),
+    casino: () => openRemote("casino"),
+    board: () => openRemote("board")
+  };
+  document.addEventListener("click", (e) => {
+    const t = e.target && e.target.closest ? e.target.closest("[data-action]") : null;
+    const fn = t && ACTIONS[t.getAttribute("data-action")];
+    if (fn) fn();
+  });
+
+  function fit() {
+    const root = document.querySelector(".root");
+    const k = window.innerWidth / (screen.width || window.innerWidth);
+    if (navigator.maxTouchPoints > 0 && screen.width < 700 && k > 1.25) {
+      root.style.width = (100 / k) + "%";
+      root.style.height = (100 / k) + "%";
+      root.style.transformOrigin = "0 0";
+      root.style.transform = "scale(" + k + ")";
+    } else {
+      root.style.width = "100%"; root.style.height = "100%"; root.style.transform = "";
+    }
+    root.setAttribute("class", "root" + (root.clientWidth < 640 ? " narrow" : ""));
+  }
+  window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", fit);
+  fit();
+
+  renderRecent();
+  refreshCache();
+  checkBackend();
+})();
+]]>
+</script>
+</svg>
+
