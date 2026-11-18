@@ -202,7 +202,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
   const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
 
   // Private content is fetched from your backend at launch time (nothing else is stored in this file)
-  const BACKEND = "https://lubraen-glaive-2u6eu4dsm-mmi-8dad.vercel.app/api";
+  const BACKEND = "lubraen-glaive.vercel.app/api";
   const REMOTE = { vault: "umbra", casino: "casino", board: "board", noct: "noct" };
   const KKEY = "launcherHub.key";
 
