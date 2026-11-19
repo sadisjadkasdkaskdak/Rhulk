@@ -327,6 +327,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
         return;
       }
       msg = (r && REASONS[r.status]) || "The server returned an error.";
+      if (r) { let d = ""; try { d = (await r.clone().text()).slice(0, 90).replace(/\s+/g, " "); } catch (e) {} msg += " [HTTP " + r.status + (d ? ": " + d : "") + "]"; }
     } catch (e) {
       msg = "Could not reach the server. Check your connection.";
     }
