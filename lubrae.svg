@@ -202,7 +202,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
   const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
 
   // Private content is fetched from your backend at launch time (nothing else is stored in this file)
-  const BACKEND = "lubraen-glaive.vercel.app/api";
+  const BACKEND = "https://lubraen-glaive.vercel.app/api";
   const REMOTE = { vault: "umbra", casino: "casino", board: "board", noct: "noct" };
   const KKEY = "launcherHub.key";
 
@@ -335,10 +335,11 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
   }
   async function checkBackend() {
     let mods = null, why = "";
-    try {
+    if (/YOUR-PROJECT/.test(BACKEND)) why = "Backend URL not set";
+    else try {
       const r = await callBackend("status");
       if (r && r.ok) mods = (await r.json()).modules; else why = (r && REASONS[r.status]) || "Offline";
-    } catch (e) { why = "Offline"; }
+    } catch (e) { why = "Offline (blocked or unreachable)"; }
     Object.keys(REMOTE).forEach((id) => {
       const b = document.querySelector('[data-action="' + id + '"]');
       if (!b) return;
@@ -393,4 +394,3 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
 ]]>
 </script>
 </svg>
-
