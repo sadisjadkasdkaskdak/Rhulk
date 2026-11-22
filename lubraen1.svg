@@ -202,7 +202,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
   const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
 
   // Private content is fetched from your backend at launch time (nothing else is stored in this file)
-  const BACKEND = "https://script.google.com/macros/s/AKfycbwj_Dtqd02UQjTlRnYcZ6zQCWhki2hOysgkQsk_t61HpAkGeoASF7g5H_B3zFdSmgHU/exec";
+  const BACKEND = "https://script.google.com/macros/s/YOUR-PROJECT-ID/exec";
   const REMOTE = { vault: "umbra", casino: "casino", board: "board", noct: "noct" };
   const KKEY = "launcherHub.key";
 
@@ -294,15 +294,23 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
 
   // ---------- remote pages (served by the private backend) ----------
   function getKey() { try { return localStorage.getItem(KKEY) || ""; } catch (e) { return ""; } }
+  // Google Apps Script always answers with HTTP 200 and a JSON envelope: {ok, body} or {ok:false, error, message}
+  const CODES = { shutdown: 410, origin: 403, key: 401, rate: 429, disabled: 503, unknown: 404, server: 500 };
   async function callBackend(m) {
     for (let i = 0; i < 2; i++) {
-      const h = {}; const k = getKey(); if (k) h["x-hub-key"] = k;
-      const r = await fetch(BACKEND + "?m=" + m + "&t=" + Date.now(), { cache: "no-store", headers: h });
-      if (r.status === 401 && i === 0) {
+      const k = getKey();
+      const res = await fetch(BACKEND + "?m=" + m + (k ? "&key=" + encodeURIComponent(k) : "") + "&t=" + Date.now());
+      const env = await res.json();
+      if (env && env.ok) {
+        return { ok: true, status: 200, text: async () => env.body, json: async () => env, clone() { return this; } };
+      }
+      const status = CODES[env && env.error] || 500;
+      if (status === 401 && i === 0) {
         const entered = window.prompt("Access key:");
         if (entered) { try { localStorage.setItem(KKEY, entered.trim()); } catch (e) {} continue; }
       }
-      return r;
+      const msg = (env && env.message) || "";
+      return { ok: false, status, text: async () => msg, json: async () => env, clone() { return this; } };
     }
   }
   const REASONS = {
@@ -329,7 +337,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
       msg = (r && REASONS[r.status]) || "The server returned an error.";
       if (r) { let d = ""; try { d = (await r.clone().text()).slice(0, 90).replace(/\s+/g, " "); } catch (e) {} msg += " [HTTP " + r.status + (d ? ": " + d : "") + "]"; }
     } catch (e) {
-      msg = "Could not reach the server. Check your connection.";
+      msg = "Could not reach the server. Check your connection. [" + (e && e.name) + ": " + (e && e.message) + "]";
     }
     try { win.document.body.textContent = msg; } catch (e) {}
     setStatus(LABELS[id] + ": " + msg);
@@ -340,7 +348,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
     else try {
       const r = await callBackend("status");
       if (r && r.ok) mods = (await r.json()).modules; else why = (r && REASONS[r.status]) || "Offline";
-    } catch (e) { why = "Offline (blocked or unreachable)"; }
+    } catch (e) { why = "Offline (check the web app link and sharing)"; }
     Object.keys(REMOTE).forEach((id) => {
       const b = document.querySelector('[data-action="' + id + '"]');
       if (!b) return;
