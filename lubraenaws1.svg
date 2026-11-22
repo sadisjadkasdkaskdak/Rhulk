@@ -294,42 +294,15 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
 
   // ---------- remote pages (served by the private backend) ----------
   function getKey() { try { return localStorage.getItem(KKEY) || ""; } catch (e) { return ""; } }
-  // Google Apps Script always answers with HTTP 200 and a JSON envelope: {ok, body} or {ok:false, error, message}
-  const CODES = { shutdown: 410, origin: 403, key: 401, rate: 429, disabled: 503, unknown: 404, server: 500 };
-  // Loads the backend with a script tag (JSONP). Browsers don't apply the cross-site fetch rules to script tags.
-  function jsonp(url) {
-    return new Promise((resolve, reject) => {
-      const cb = "__hub" + Math.random().toString(36).slice(2);
-      const s = document.createElementNS(XHTML, "script");
-      const t = setTimeout(() => { cleanup(); reject(new Error("timed out")); }, 60000);
-      function cleanup() { clearTimeout(t); try { delete window[cb]; } catch (e) { window[cb] = undefined; } if (s.parentNode) s.parentNode.removeChild(s); }
-      window[cb] = (d) => { cleanup(); resolve(d); };
-      s.onerror = () => { cleanup(); reject(new Error("script blocked or unreachable")); };
-      s.setAttribute("src", url + "&callback=" + cb);
-      document.documentElement.appendChild(s);
-    });
-  }
-  async function rawCall(url) {
-    try { return await jsonp(url); }
-    catch (e1) {
-      const res = await fetch(url);
-      return await res.json();
-    }
-  }
   async function callBackend(m) {
     for (let i = 0; i < 2; i++) {
-      const k = getKey();
-      const env = await rawCall(BACKEND + "?m=" + m + (k ? "&key=" + encodeURIComponent(k) : "") + "&t=" + Date.now());
-      if (env && env.ok) {
-        return { ok: true, status: 200, text: async () => env.body, json: async () => env, clone() { return this; } };
-      }
-      const status = CODES[env && env.error] || 500;
-      if (status === 401 && i === 0) {
+      const h = {}; const k = getKey(); if (k) h["x-hub-key"] = k;
+      const r = await fetch(BACKEND + "?m=" + m + "&t=" + Date.now(), { cache: "no-store", headers: h });
+      if (r.status === 401 && i === 0) {
         const entered = window.prompt("Access key:");
         if (entered) { try { localStorage.setItem(KKEY, entered.trim()); } catch (e) {} continue; }
       }
-      const msg = (env && env.message) || "";
-      return { ok: false, status, text: async () => msg, json: async () => env, clone() { return this; } };
+      return r;
     }
   }
   const REASONS = {
@@ -356,7 +329,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
       msg = (r && REASONS[r.status]) || "The server returned an error.";
       if (r) { let d = ""; try { d = (await r.clone().text()).slice(0, 90).replace(/\s+/g, " "); } catch (e) {} msg += " [HTTP " + r.status + (d ? ": " + d : "") + "]"; }
     } catch (e) {
-      msg = "Could not reach the server. Check your connection. [" + (e && e.name) + ": " + (e && e.message) + "]";
+      msg = "Could not reach the server. Check your connection.";
     }
     try { win.document.body.textContent = msg; } catch (e) {}
     setStatus(LABELS[id] + ": " + msg);
@@ -367,7 +340,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
     else try {
       const r = await callBackend("status");
       if (r && r.ok) mods = (await r.json()).modules; else why = (r && REASONS[r.status]) || "Offline";
-    } catch (e) { why = "Offline (check the web app link and sharing)"; }
+    } catch (e) { why = "Offline (blocked or unreachable)"; }
     Object.keys(REMOTE).forEach((id) => {
       const b = document.querySelector('[data-action="' + id + '"]');
       if (!b) return;
