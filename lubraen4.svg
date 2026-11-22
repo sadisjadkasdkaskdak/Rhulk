@@ -202,7 +202,7 @@ h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:
   const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
 
   // Private content is fetched from your backend at launch time (nothing else is stored in this file)
-  const BACKEND = "https://script.google.com/macros/s/AKfycby-IaBslhdwg-2YqOK2dQrhKe-ObhFAVS0oR1L7jItECq_As_-Lf6OkWsTFptkmk085/exec";
+  const BACKEND = "https://script.google.com/macros/s/AKfycbxO5Sl_Z0nVXegJ8DkI4EFvaBBEzMbde_9syEIE5hueCklYb6vPT25pwY_dgNtCuJoy/exec";
   const REMOTE = { vault: "umbra", casino: "casino", board: "board", noct: "noct" };
   const KKEY = "launcherHub.key";
 
