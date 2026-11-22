@@ -18,7 +18,7 @@
       <script>
       <![CDATA[
       (() => {
-        const config = {"sources":[{"host":"cdn.jsdelivr.net","path":"/gh/sadisjadkasdkaskdak/CDNlucidefork@dbf41454156f8c76dd79a727b9818898129d382c-40247716652-1/"}],"version":"dbf41454156f8c76dd79a727b9818898129d382c-40247716652-1","timeoutMs":1800,"entry":"index-E168Vs9r-890c1144.js","preloads":["react-BNEptbwn-890c1144.js","motion-B1hdS1Lc-890c1144.js"],"styles":["index-CgDeyAwe-890c1144.css"],"probe":"40aa0740917767fc.txt"};
+        const config = {"sources":[{"host":"cdn.jsdelivr.net","path":"/gh/cdnschoolwork/CDN@dbf41454156f8c76dd79a727b9818898129d382c-40247716652-1/"}],"version":"dbf41454156f8c76dd79a727b9818898129d382c-40247716652-1","timeoutMs":1800,"entry":"index-E168Vs9r-890c1144.js","preloads":["react-BNEptbwn-890c1144.js","motion-B1hdS1Lc-890c1144.js"],"styles":["index-CgDeyAwe-890c1144.css"],"probe":"40aa0740917767fc.txt"};
         const candidates = config.sources.map((source) => "https://" + source.host + source.path);
         const local = new URL("./", document.baseURI).href;
         const fallbackKey = "cdn-local:" + config.version;
