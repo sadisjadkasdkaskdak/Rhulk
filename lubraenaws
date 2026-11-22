@@ -1,0 +1,424 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="background:#05060d">
+<title>Launcher Hub</title>
+<foreignObject x="0" y="0" width="100%" height="100%">
+<div xmlns="http://www.w3.org/1999/xhtml" class="root">
+<style><![CDATA[
+.root{--pad:32px;--panel:#12101a;--line:rgba(184,176,218,.3);--line2:rgba(184,176,218,.18);--acc:#b8b0da;--acc2:#cdc4ff;--txt:#eae6ff;--mut:#b7b3c7;--ink:#14121c;
+  width:100%;height:100%;position:relative;overflow:hidden;background:#05060d;color:var(--txt);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;font-weight:500;line-height:1.5;-webkit-text-size-adjust:100%}
+.root *{box-sizing:border-box}
+.rad{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.scroll{position:absolute;left:0;top:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  background:radial-gradient(900px 420px at 85% -80px,rgba(184,176,218,.20),transparent 70%)}
+.page{min-height:100%;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px var(--pad);background:#05060d;border-bottom:1px solid var(--line2)}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:600;font-size:17px;letter-spacing:-.02em}
+.brand i{width:12px;height:12px;border-radius:50%;background:var(--txt);box-shadow:0 0 0 5px rgba(184,176,218,.16)}
+.tabs{display:flex;gap:8px;margin-left:auto}
+.tab{display:flex;align-items:center;justify-content:center;min-height:42px;padding:0 20px;border:1px solid rgba(184,176,218,.45);color:var(--txt);font-weight:600;font-size:13px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:background .2s}
+.tab:hover{background:rgba(184,176,218,.12)}
+#t-mc:checked ~ .scroll .tab.mc,#t-br:checked ~ .scroll .tab.br{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+#t-mc:checked ~ .scroll .tab.mc:hover,#t-br:checked ~ .scroll .tab.br:hover{background:var(--acc2)}
+#t-mc:focus-visible ~ .scroll .tab.mc,#t-br:focus-visible ~ .scroll .tab.br{outline:2px solid var(--acc2);outline-offset:2px}
+.main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:40px var(--pad) 40px}
+.view{display:none;animation:in .6s cubic-bezier(.16,1,.3,1) both}
+#t-home:checked ~ .scroll .v-home,#t-mc:checked ~ .scroll .v-mc,#t-br:checked ~ .scroll .v-br{display:block}
+@keyframes in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+.hero{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);padding:40px 36px 34px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb.a{width:280px;height:280px;right:-96px;top:-120px;background:radial-gradient(circle,rgba(184,176,218,.55),rgba(184,176,218,0) 68%)}
+.orb.b{width:72px;height:72px;right:22px;top:22px;border:1px solid rgba(184,176,218,.55)}
+.orb.c{width:12px;height:12px;left:20px;top:20px;background:var(--txt)}
+.hero>*:not(.orb){position:relative;z-index:1}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h1{margin:8px 0 0;font-size:46px;line-height:1.1;font-weight:600;letter-spacing:-.03em}
+.lead{margin:12px 0 0;color:var(--mut);max-width:62ch}
+.sect{margin:32px 0 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.cats,.grid,.tips{display:grid;gap:14px}
+.cats{margin-top:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.grid{margin-top:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.tips{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.cat{display:flex;flex-direction:column;gap:8px;padding:24px;background:var(--panel);border:1px solid var(--line);cursor:pointer;transition:border-color .2s,background .2s}
+.cat:hover{border-color:var(--acc);background:#171424}
+.cat h2{margin:6px 0 0;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.cat p{margin:0;color:var(--mut);font-size:14px}
+.cat .go{margin-top:6px;color:var(--acc);font-weight:600;font-size:13px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--line2);color:var(--mut)}
+.back{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;cursor:pointer;color:var(--mut);font-size:13px;font-weight:600}
+.back:hover{color:var(--txt)}
+.card{display:flex;flex-direction:column;gap:12px;padding:22px;background:var(--panel);border:1px solid var(--line)}
+.card h2{margin:0;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.card p{margin:0;color:var(--mut);font-size:14px}
+.card .spacer{flex:1}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.btn{flex:1 1 150px;min-height:46px;padding:0 18px;border:0;background:var(--acc);color:var(--ink);font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--acc2)}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid rgba(184,176,218,.45)}
+.btn.ghost:hover{background:rgba(184,176,218,.12)}
+.btn:focus-visible,.chip-btn:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
+.badge i{width:8px;height:8px;border-radius:50%;background:#6b6783}
+.badge.ok i{background:#8fe3b0;box-shadow:0 0 0 4px rgba(143,227,176,.16)}
+.prog{display:none;flex-direction:column;gap:6px}.prog.on{display:flex}
+.track{height:6px;background:rgba(184,176,218,.16)}
+.fill{height:100%;width:0;background:var(--acc);transition:width .2s}.fill.ind{width:100%;opacity:.35}
+.ptxt{font-size:12px;color:var(--mut)}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;color:var(--mut);font-size:14px}
+.steps li::before{content:counter(s);flex:none;width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--line);color:var(--acc);font-size:12px;font-weight:600}
+.grid.wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{padding:10px 14px;background:transparent;border:1px solid rgba(184,176,218,.45);color:var(--txt);font-family:inherit;font-weight:600;font-size:13px;cursor:pointer}
+.chip-btn:hover{background:rgba(184,176,218,.12)}
+.hint{color:var(--mut);font-size:14px}
+.tip{padding:14px 16px;border:1px solid var(--line2);background:rgba(184,176,218,.06);color:var(--mut);font-size:14px}
+.tip b{display:block;color:var(--txt);font-weight:600;margin-bottom:2px}
+.statusbar{position:sticky;bottom:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px var(--pad);background:rgba(5,6,13,.985);border-top:1px solid var(--line2);color:var(--mut);font-size:13px}
+.statusbar i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(184,176,218,.16)}
+.narrow{--pad:16px}.narrow .main{padding-top:20px}.narrow h1{font-size:30px}.narrow .hero{padding:46px 20px 24px}.narrow .tabs{width:100%;margin-left:0}.narrow .tab{flex:1;padding:0 8px}.narrow .orb.b{width:52px;height:52px}.narrow .cat,.narrow .card{padding:18px}
+]]></style>
+
+<input class="rad" type="radio" name="tab" id="t-home" checked="checked"/>
+<input class="rad" type="radio" name="tab" id="t-mc"/>
+<input class="rad" type="radio" name="tab" id="t-br"/>
+
+<div class="scroll"><div class="page">
+  <div class="top">
+    <label class="brand" for="t-home"><i></i>Launcher Hub</label>
+    <div class="tabs">
+      <label class="tab mc" for="t-mc">Minecraft</label>
+      <label class="tab br" for="t-br">Browser/Games</label>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- HOME -->
+    <div class="view v-home">
+      <div class="hero"><i class="orb a"></i><i class="orb b"></i><i class="orb c"></i>
+        <div class="kicker">Home</div>
+        <h1>Launcher Hub</h1>
+        <p class="lead">Everything opens in its own about:blank tab. Pick a tab to get started.</p>
+      </div>
+      <div class="cats">
+        <label class="cat" for="t-mc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#b8b0da" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z"/><path d="M3.5 7 12 11.5 20.5 7M12 11.5v10"/></svg><h2>Minecraft</h2><p>Eaglercraft offline launcher. Download it once, then it loads from your browser cache.</p><div class="pills"><span class="pill">1 launcher</span><span class="pill">Offline cache</span></div><span class="go">Open tab &#8594;</span></label>
+        <label class="cat" for="t-br"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#b8b0da" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7"/><rect x="13.5" y="3.5" width="7" height="7"/><rect x="3.5" y="13.5" width="7" height="7"/><rect x="13.5" y="13.5" width="7" height="7"/></svg><h2>Browser/Games</h2><p>Game hubs and web apps: Umbra, Nocturne, Cup Casino and Board Games.</p><div class="pills"><span class="pill">4 apps</span><span class="pill">about:blank</span></div><span class="go">Open tab &#8594;</span></label>
+      </div>
+      <div class="sect">Recently launched</div>
+      <div class="chips" id="recentList"></div>
+      <div class="sect">Good to know</div>
+      <div class="tips">
+        <div class="tip"><b>Allow pop-ups</b>Launches open in a new about:blank tab, so your browser has to allow pop-ups for this page.</div>
+        <div class="tip"><b>Eaglercraft caches itself</b>The first launch downloads about 89 MB. After that it starts straight from the cache.</div>
+        <div class="tip"><b>Fresh copy</b>Use Clear Cache on the Minecraft tab to throw the cached copy away and download it again.</div>
+      </div>
+    </div>
+
+    <!-- MINECRAFT -->
+    <div class="view v-mc">
+      <label class="back" for="t-home">&#8592; Home</label>
+      <div class="hero"><i class="orb a"></i><i class="orb b"></i><i class="orb c"></i>
+        <div class="kicker">Minecraft</div>
+        <h1>Eaglercraft</h1>
+        <p class="lead">Offline Eaglercraft launcher. Downloads once, then launches from the cache in your browser.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h2>Launcher</h2>
+          <div class="pills"><span class="pill">~89 MB first download</span><span class="pill">Opens in about:blank</span></div>
+          <div class="badge" id="cacheBadge"><i></i><span id="cacheText">Checking cache&#8230;</span></div>
+          <div class="prog" id="prog"><div class="track"><div class="fill" id="fill"></div></div><div class="ptxt" id="ptxt"></div></div>
+          <div class="spacer"></div>
+          <div class="row">
+            <button type="button" class="btn" data-action="mc-launch">Download &amp; Launch</button>
+            <button type="button" class="btn ghost" data-action="mc-clear">Clear Cache</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>How it works</h2>
+          <ol class="steps">
+            <li>Press Download &amp; Launch. The game file is fetched the first time only.</li>
+            <li>It is saved in your browser (IndexedDB), so the next launch is instant.</li>
+            <li>The game opens in a new about:blank tab. Allow pop-ups if nothing opens.</li>
+            <li>Clear Cache removes the saved copy so the next launch downloads a fresh one.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- BROWSER / GAMES -->
+    <div class="view v-br">
+      <label class="back" for="t-home">&#8592; Home</label>
+      <div class="hero"><i class="orb a"></i><i class="orb b"></i><i class="orb c"></i>
+        <div class="kicker">Browser / Games</div>
+        <h1>Browser &amp; Games</h1>
+        <p class="lead">Game hubs and web apps. Each one opens in its own about:blank tab.</p>
+      </div>
+      <div class="grid wide">
+        <div class="card">
+          <h2>Umbra</h2>
+          <div class="pills"><span class="pill">Game library</span><span class="pill">1,900+ games</span></div>
+          <p>The game library: live search, an A&#8211;Z jump bar, three pin slots, recently played and a random pick. Games load from a CDN when you click them.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="vault">Launch Umbra</button></div>
+        </div>
+        <div class="card">
+          <h2>Nocturne</h2>
+          <div class="pills"><span class="pill">Web app</span></div>
+          <p>The Nocturne web app. It starts with a short ad notice that you can dismiss with OK.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="noct">Launch Nocturne</button></div>
+        </div>
+        <div class="card">
+          <h2>Cup Casino</h2>
+          <div class="pills"><span class="pill">Play money</span><span class="pill">Sandbox</span></div>
+          <p>Your private play-money sandbox: originals, slots, table games and sports. No real money involved.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="casino">Launch Cup Casino</button></div>
+        </div>
+        <div class="card">
+          <h2>Board Games</h2>
+          <div class="pills"><span class="pill">5 games</span><span class="pill">Bots</span><span class="pill">Self-contained</span></div>
+          <p>Scrabble, Risk, Clue, Monopoly and Balatro, rebuilt from scratch. Play against bots of every difficulty. Each game keeps running when you go back to the menu.</p>
+          <div class="spacer"></div>
+          <div class="row"><button type="button" class="btn" data-action="board">Launch Board Games</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="statusbar"><i></i><span id="statusText">Ready.</span></div>
+</div></div>
+</div>
+</foreignObject>
+
+<script type="text/javascript">
+<![CDATA[
+(function () {
+  const XHTML = "http://www.w3.org/1999/xhtml";
+  const LABELS = { mc: "Eaglercraft", vault: "Umbra", noct: "Nocturne", casino: "Cup Casino", board: "Board Games" };
+
+  // Private content is fetched from your backend at launch time (nothing else is stored in this file)
+  const BACKEND = "https://cblfhixjnifqpe7ewbw2p5g2hm0bkryq.lambda-url.us-east-2.on.aws/";
+  const REMOTE = { vault: "umbra", casino: "casino", board: "board", noct: "noct" };
+  const KKEY = "launcherHub.key";
+
+  const $ = (id) => document.getElementById(id);
+  const setStatus = (msg) => { $("statusText").textContent = msg; };
+
+  // ---------- about:blank ----------
+  function openBlank(loadingMsg) {
+    const win = window.open("about:blank", "_blank");
+    if (!win) { setStatus("Pop-up blocked! Allow pop-ups for this page and try again."); return null; }
+    if (loadingMsg) {
+      try {
+        win.document.write('<body style="margin:0;background:#05060d;color:#b7b3c7;font:15px system-ui,sans-serif;display:grid;place-items:center;height:100vh">' + loadingMsg + '</body>');
+      } catch (e) {}
+    }
+    return win;
+  }
+  function render(win, html, base) {
+    let out = html;
+    if (base && !/<base\s/i.test(out)) out = '<base href="' + base + '">' + out;
+    win.document.open();
+    win.document.write(out);
+    win.document.close();
+  }
+
+  // ---------- recently launched ----------
+  const RKEY = "launcherHub.recent";
+  function getRecent() {
+    try { return JSON.parse(localStorage.getItem(RKEY) || "[]").filter((k) => LABELS[k]); } catch (e) { return []; }
+  }
+  function remember(id) {
+    try { localStorage.setItem(RKEY, JSON.stringify([id].concat(getRecent().filter((x) => x !== id)).slice(0, 4))); } catch (e) {}
+    renderRecent();
+  }
+  function renderRecent() {
+    const box = $("recentList");
+    while (box.firstChild) box.removeChild(box.firstChild);
+    const r = getRecent();
+    if (!r.length) {
+      const h = document.createElementNS(XHTML, "span");
+      h.setAttribute("class", "hint");
+      h.textContent = "Nothing launched yet.";
+      box.appendChild(h);
+      return;
+    }
+    r.forEach((id) => {
+      const b = document.createElementNS(XHTML, "button");
+      b.setAttribute("type", "button");
+      b.setAttribute("class", "chip-btn");
+      b.setAttribute("data-action", id === "mc" ? "mc-launch" : id);
+      b.textContent = LABELS[id];
+      box.appendChild(b);
+    });
+  }
+
+  // ---------- Eaglercraft (logic is loaded from the backend) ----------
+  let mcMod = null, mcTry = null;
+  function loadMc() {
+    if (mcMod) return Promise.resolve(mcMod);
+    if (!mcTry) mcTry = (async () => {
+      const r = await callBackend("mc");
+      if (!r || !r.ok) { mcTry = null; throw new Error((r && REASONS[r.status]) || "Unavailable"); }
+      const code = await r.text();
+      mcMod = new Function("ctx", code)({ $: $, setStatus: setStatus, render: render, remember: remember });
+      return mcMod;
+    })().catch((e) => { mcTry = null; throw e; });
+    return mcTry;
+  }
+  async function launchMc() {
+    const win = openBlank("Loading Eaglercraft…");
+    if (!win) return;
+    try { const m = await loadMc(); await m.launch(win); }
+    catch (err) { try { win.close(); } catch (e) {} setStatus("Eaglercraft: " + (err.message || "Unavailable")); }
+  }
+  async function clearMc() {
+    try { const m = await loadMc(); await m.clear(); }
+    catch (err) { setStatus("Eaglercraft: " + (err.message || "Unavailable")); }
+  }
+
+  // ---------- simple embedded pages ----------
+  function openPage(id, html) {
+    const win = openBlank();
+    if (!win) return;
+    render(win, html);
+    remember(id);
+    setStatus(LABELS[id] + " launched!");
+  }
+
+
+  // ---------- remote pages (served by the private backend) ----------
+  function getKey() { try { return localStorage.getItem(KKEY) || ""; } catch (e) { return ""; } }
+  // Google Apps Script always answers with HTTP 200 and a JSON envelope: {ok, body} or {ok:false, error, message}
+  const CODES = { shutdown: 410, origin: 403, key: 401, rate: 429, disabled: 503, unknown: 404, server: 500 };
+  // Loads the backend with a script tag (JSONP). Browsers don't apply the cross-site fetch rules to script tags.
+  function jsonp(url) {
+    return new Promise((resolve, reject) => {
+      const cb = "__hub" + Math.random().toString(36).slice(2);
+      const s = document.createElementNS(XHTML, "script");
+      const t = setTimeout(() => { cleanup(); reject(new Error("timed out")); }, 60000);
+      function cleanup() { clearTimeout(t); try { delete window[cb]; } catch (e) { window[cb] = undefined; } if (s.parentNode) s.parentNode.removeChild(s); }
+      window[cb] = (d) => { cleanup(); resolve(d); };
+      s.onerror = () => { cleanup(); reject(new Error("script blocked or unreachable")); };
+      s.setAttribute("src", url + "&callback=" + cb);
+      document.documentElement.appendChild(s);
+    });
+  }
+  async function rawCall(url) {
+    try { return await jsonp(url); }
+    catch (e1) {
+      const res = await fetch(url);
+      return await res.json();
+    }
+  }
+  async function callBackend(m) {
+    for (let i = 0; i < 2; i++) {
+      const k = getKey();
+      const env = await rawCall(BACKEND + "?m=" + m + (k ? "&key=" + encodeURIComponent(k) : "") + "&t=" + Date.now());
+      if (env && env.ok) {
+        return { ok: true, status: 200, text: async () => env.body, json: async () => env, clone() { return this; } };
+      }
+      const status = CODES[env && env.error] || 500;
+      if (status === 401 && i === 0) {
+        const entered = window.prompt("Access key:");
+        if (entered) { try { localStorage.setItem(KKEY, entered.trim()); } catch (e) {} continue; }
+      }
+      const msg = (env && env.message) || "";
+      return { ok: false, status, text: async () => msg, json: async () => env, clone() { return this; } };
+    }
+  }
+  const REASONS = {
+    410: "This launcher has been shut down by its owner.",
+    403: "This copy of the launcher is not authorized.",
+    401: "A valid access key is required.",
+    429: "Too many requests. Wait a minute and try again.",
+    503: "This section is switched off right now.",
+    404: "Not found."
+  };
+  async function openRemote(id) {
+    const win = openBlank("Loading " + LABELS[id] + "...");
+    if (!win) return;
+    setStatus("Loading " + LABELS[id] + "...");
+    let msg = "";
+    try {
+      const r = await callBackend(REMOTE[id]);
+      if (r && r.ok) {
+        render(win, await r.text());
+        remember(id);
+        setStatus(LABELS[id] + " launched!");
+        return;
+      }
+      msg = (r && REASONS[r.status]) || "The server returned an error.";
+      if (r) { let d = ""; try { d = (await r.clone().text()).slice(0, 90).replace(/\s+/g, " "); } catch (e) {} msg += " [HTTP " + r.status + (d ? ": " + d : "") + "]"; }
+    } catch (e) {
+      msg = "Could not reach the server. Check your connection. [" + (e && e.name) + ": " + (e && e.message) + "]";
+    }
+    try { win.document.body.textContent = msg; } catch (e) {}
+    setStatus(LABELS[id] + ": " + msg);
+  }
+  async function checkBackend() {
+    let mods = null, why = "";
+    if (/YOUR-PROJECT/.test(BACKEND)) why = "Backend URL not set";
+    else try {
+      const r = await callBackend("status");
+      if (r && r.ok) mods = (await r.json()).modules; else why = (r && REASONS[r.status]) || "Offline";
+    } catch (e) { why = "Offline (check the web app link and sharing)"; }
+    Object.keys(REMOTE).forEach((id) => {
+      const b = document.querySelector('[data-action="' + id + '"]');
+      if (!b) return;
+      const on = mods && mods[REMOTE[id]];
+      b.disabled = !on;
+      b.setAttribute("title", on ? "" : (why || "Switched off"));
+      if (!on) b.textContent = why && why.length < 40 ? why : "Unavailable";
+    });
+    ["mc-launch", "mc-clear"].forEach((a) => {
+      const b = document.querySelector('[data-action="' + a + '"]');
+      if (b) { b.disabled = !(mods && mods.mc); if (!(mods && mods.mc)) b.setAttribute("title", why || "Switched off"); }
+    });
+    if (mods && mods.mc) { try { (await loadMc()).refresh(); } catch (e) {} }
+    else { $("cacheText").textContent = why || "Unavailable"; }
+    if (why) setStatus(why);
+  }
+
+  const ACTIONS = {
+    "mc-launch": launchMc,
+    "mc-clear": clearMc,
+    vault: () => openRemote("vault"),
+    noct: () => openRemote("noct"),
+    casino: () => openRemote("casino"),
+    board: () => openRemote("board")
+  };
+  document.addEventListener("click", (e) => {
+    const t = e.target && e.target.closest ? e.target.closest("[data-action]") : null;
+    const fn = t && ACTIONS[t.getAttribute("data-action")];
+    if (fn) fn();
+  });
+
+  function fit() {
+    const root = document.querySelector(".root");
+    const k = window.innerWidth / (screen.width || window.innerWidth);
+    if (navigator.maxTouchPoints > 0 && screen.width < 700 && k > 1.25) {
+      root.style.width = (100 / k) + "%";
+      root.style.height = (100 / k) + "%";
+      root.style.transformOrigin = "0 0";
+      root.style.transform = "scale(" + k + ")";
+    } else {
+      root.style.width = "100%"; root.style.height = "100%"; root.style.transform = "";
+    }
+    root.setAttribute("class", "root" + (root.clientWidth < 640 ? " narrow" : ""));
+  }
+  window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", fit);
+  fit();
+
+  renderRecent();
+  checkBackend();
+})();
+]]>
+</script>
+</svg>
